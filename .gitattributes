@@ -1,0 +1,3 @@
+# .gitattributes file in root folder of your git project
+*.docx diff=pandoc
+*.doc diff=pandoc
