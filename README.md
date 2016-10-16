@@ -3,8 +3,7 @@
 <https://docs.google.com/open?authuser=t102590009%40ntut.org.tw&id=0BzAJI_aVbLBGMlZFTE9DLTdDNVU>
 
 ## 專案環境建置
-### Node.js & NPM
-----
+### 1. Node.js & NPM
 #### windows
 
 * <https://nodejs.org/en/>下載安裝檔安裝
@@ -12,8 +11,8 @@
 * 輸入`node -v`和`npm -v`
 * 有版本出現，代表安裝完成
 
-### Sails(Nodejs MVC框架)
-----
+### 2. Sails(Nodejs MVC框架)
+
 #### windows
 ```
 npm -g install sails
