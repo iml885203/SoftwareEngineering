@@ -7,10 +7,8 @@
 
 module.exports = {
 	index: function(req, res){
-		// User.create({
-		// 	username: 'user',
-		// 	password: 'password'
-		// }).catch( err => sails.log.error(err));
+		// User.register('asdf', 'password');
+		User.login('asdf', 'password');
 		res.view();
 		return;
 	}
