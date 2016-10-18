@@ -1,1 +1,13 @@
-這裡是auth/index
+<div>
+  <form action="login" method="POST">
+    帳號：<input name="name" type="text"><br>
+    密碼：<input name="password" type="password"><br>
+    <input type="submit" value="登入"><br>
+    <p>
+      <%=%>
+      <% if(typeof message != 'undefined') { %>
+        <%= message %>
+      <% } %>
+    </p>
+  </form>
+</div>

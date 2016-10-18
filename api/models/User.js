@@ -6,12 +6,11 @@
  */
 
 var bcrypt = require('bcrypt');
-const salt = bcrypt.genSaltSync(10);
 
 module.exports = {
   connection: 'someMongodbServer',
   attributes: {
-    username: {
+    name: {
       type: 'string',
       required: true,
       unique: true
@@ -20,25 +19,28 @@ module.exports = {
       type: 'string',
       required: true,
     },
-
+    isSameName: function(name){
+      return name === this.name;
+    },
   },
 
-  register: (name, password) => {
-    let hashPassword = bcrypt.hashSync(password, salt);
-    sails.log(hashPassword);
-    User.create({
-      username: name,
-      password: hashPassword
-    }).catch( err => sails.log.error(err));
-  },
-
-  login: (username, password) => {
-    User.findOne({username: username}).then(user => {
-      sails.log('username: ',user.username);
-      sails.log('password: ',user.password);
-      sails.log('login check: ',bcrypt.compareSync(password, user.password));
+  beforeCreate: function(user, cb) {
+    bcrypt.genSalt(10, function(err, salt) {
+      bcrypt.hash(user.password, salt, function(err, hash) {
+        if (err) {
+          console.log(err);
+          cb(err);
+        } else {
+          user.password = hash;
+          cb();
+        }
+      });
     });
-
-    // return bcrypt.compareSync(myPlaintextPassword, hashPassword);
   },
+
+
+
+
+
+
 };
