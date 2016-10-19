@@ -9,42 +9,25 @@
 
 module.exports = {
 	index: function(req, res){
-		// User.create({
-    //   name: name,
-    //   password: hashPassword
-    // }).catch( err => sails.log.error(err));
-		// User.findOneByName('asdf', (err, user) => {
-		// 	if(err) res.serverError(err);
-		// 	sails.log(user.name, 'password pass:', user.checkPassword('password'));
-		// })
-		// let isUsed = false;
-		// User.find().then(users => {
-		// 	users.forEach(user => {
-		// 		// sails.log(user.name, name, user.name === name);
-		// 		if(user.isSameName('asdf')){
-		// 			isUsed = true;
-		// 			sails.log.info('username is used');
-		// 			return;
-		// 		}
-		// 	});
-		// 	sails.log.info(isUsed);
-		//
-		// });
-		res.view('auth/index');
+    let errorMessage = '';
+    if(typeof errorMessage != 'undefined'){
+      errorMessage = req.session.errorMessage;
+      req.session.errorMessage = undefined;
+    }
+		res.view('auth/index', { message: errorMessage });
 
 		return;
 	},
 
 	login: function(req, res){
-		sails.log('login post');
 		passport.authenticate('local', function(err, user, info) {
 	    if ((err) || (!user)) {
-        return res.view('auth/index', {
-          message: info.message
-        });
+        req.session.errorMessage = info.message;
+        return res.redirect('/');
 	    }
 	    req.logIn(user, function(err) {
         if (err) res.send(err);
+        sails.log(user.name, 'Logined at', user.loginedAt);
         return res.redirect('/');
 	    });
     })(req, res);
@@ -53,5 +36,13 @@ module.exports = {
 	logout: function(req, res){
 		req.logout();
 		res.redirect('/');
-	}
+	},
+
+  register: function(req, res){
+    User.create({
+      name: 'asdf',
+      password: 'password'
+    }).catch( err => sails.log.error(err));
+    res.redirect('/');
+  }
 };

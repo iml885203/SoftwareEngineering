@@ -19,9 +19,17 @@ module.exports = {
       type: 'string',
       required: true,
     },
+    loginedAt: {
+      type: 'datetime',
+    },
     isSameName: function(name){
       return name === this.name;
     },
+    updateLoginedAt: function(){
+      this.loginedAt = new Date();
+      this.save();
+      return;
+    }
   },
 
   beforeCreate: function(user, cb) {

@@ -25,15 +25,18 @@ passport.use(new LocalStrategy({
       }
 
       bcrypt.compare(password, user.password, function (err, res) {
-          if (!res)
+          if (!res){
             return done(null, false, {
-              message: '密碼數入錯誤'
+              message: '密碼輸入錯誤'
             });
+          }
+          user.updateLoginedAt();
           var returnUser = {
             name: user.name,
-            createdAt: user.createdAt,
+            loginedAt: user.loginedAt,
             id: user.id
           };
+
           return done(null, returnUser, {
             message: '登入成功'
           });

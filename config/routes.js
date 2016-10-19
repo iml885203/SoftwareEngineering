@@ -38,6 +38,8 @@ module.exports.routes = {
   'get /login': 'Auth.index',
   'post /login': 'Auth.login',
   'get /logout': 'Auth.logout',
+  'get /register': 'Auth.register',
+
 
   /***************************************************************************
   *                                                                          *
