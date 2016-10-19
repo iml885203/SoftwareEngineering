@@ -33,6 +33,7 @@ var jsFilesToInject = [
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
+  'js/jquery-3.1.1.min.js',
   'js/**/*.js'
 ];
 
@@ -83,5 +84,3 @@ module.exports.templateFilesToInject = templateFilesToInject.map(function(tplPat
   }
   return require('path').join('assets/',tplPath);
 });
-
-
