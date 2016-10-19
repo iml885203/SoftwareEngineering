@@ -46,6 +46,16 @@ module.exports = {
     });
   },
 
+  CheckRepeatName: function(name, cb){
+    User.find().then((users) => {
+      let isRepeat = false;
+      users.forEach((user) => {
+        if(user.name === name) isRepeat = true;
+      });
+      cb(isRepeat);
+    }).catch( err => sails.log.error(err));;
+  }
+
 
 
 
