@@ -7,6 +7,7 @@
 
 module.exports = {
 	index: function(req, res){
+		sails.log(req.session);
 		res.view();
 	}
 };
