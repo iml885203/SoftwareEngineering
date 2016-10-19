@@ -1,7 +1,7 @@
 <br>I am Header <br><br>
-<% if(typeof req.session.passport.user != 'undefined'){ %>
-  <a href="/auth/logout">登出</a>
-<% } else { %>
+<% if(typeof req.session.passport == 'undefined' || typeof req.session.passport.user == 'undefined'){ %>
   <a href="/auth/login">登入</a>
+<% } else { %>
+  <a href="/auth/logout">登出</a>
 <% } %>
 <br>

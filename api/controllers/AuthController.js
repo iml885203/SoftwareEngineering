@@ -5,7 +5,7 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
- var passport = require('passport');
+var passport = require('passport');
 
 module.exports = {
 	index: function(req, res){
@@ -22,7 +22,6 @@ module.exports = {
 	login: function(req, res){
 		passport.authenticate('local', function(err, user, info) {
 	    if ((err) || (!user)) {
-        sails.log(info);
         req.session.errorMessage = info.message;
         return res.redirect('/auth/login');
 	    }
