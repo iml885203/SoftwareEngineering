@@ -3,13 +3,13 @@ LocalStrategy = require('passport-local').Strategy,
 bcrypt = require('bcrypt');
 
 passport.serializeUser(function(user, done) {
-    done(null, user.id);
+  done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
-    User.findOne({ id: id } , function (err, user) {
-        done(err, user);
-    });
+  User.findOne({ id: id } , function (err, user) {
+      done(err, user);
+  });
 });
 
 passport.use(new LocalStrategy({
@@ -26,9 +26,7 @@ passport.use(new LocalStrategy({
 
       bcrypt.compare(password, user.password, function (err, res) {
           if (!res){
-            return done(null, false, {
-              message: '密碼輸入錯誤'
-            });
+            return done(null, false, { message: '密碼輸入錯誤' });
           }
           user.updateLoginedAt();
           var returnUser = {

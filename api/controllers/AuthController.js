@@ -22,8 +22,9 @@ module.exports = {
 	login: function(req, res){
 		passport.authenticate('local', function(err, user, info) {
 	    if ((err) || (!user)) {
+        sails.log(info);
         req.session.errorMessage = info.message;
-        return res.redirect('/');
+        return res.redirect('/auth/login');
 	    }
 	    req.logIn(user, function(err) {
         if (err) res.send(err);

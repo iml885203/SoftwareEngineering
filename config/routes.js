@@ -32,13 +32,13 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'get /': 'home.index',
+  'GET /': 'home.index',
 
   //Auth
-  'get /login': 'Auth.index',
-  'post /login': 'Auth.login',
-  'get /logout': 'Auth.logout',
-  'get /register': 'Auth.register',
+  'GET /auth/login': 'Auth.index',
+  'POST /auth/login': 'Auth.login',
+  'GET /auth/logout': 'Auth.logout',
+  'GET /auth/register': 'Auth.register',
 
 
   /***************************************************************************

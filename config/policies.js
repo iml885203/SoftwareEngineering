@@ -26,12 +26,12 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  '*': 'isAuthenticated',
+  '*': true,//全部controller設為需登入才能存取
 
   'auth': {
     '*': true,
-    'index': 'isLogined',
-    'logout': 'isAuthenticated',
+    'index': 'isNotLogined',//登入後無法再到登入頁面
+    'logout': 'isLogined',//設為需登入才能存取
   },
 
   /***************************************************************************
