@@ -38,7 +38,6 @@ module.exports.routes = {
   'GET /auth/login': 'Auth.index',
   'POST /auth/login': 'Auth.login',
   'GET /auth/logout': 'Auth.logout',
-  // 'GET /auth/create': 'Auth.register',
   //AuthApi
   'GET /auth/checkname': 'Auth.checkNameRepeat',
   //User

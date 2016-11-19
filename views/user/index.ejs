@@ -8,6 +8,7 @@
     <table class="table">
       <thead>
         <th>帳號</th>
+        <th>暱稱</th>
         <th>權限</th>
         <th>創建日期</th>
         <th>功能</th>
@@ -16,6 +17,7 @@
         <% if(users.length){ %>
           <% users.forEach(function(user){ %>
             <tr>
+              <td><%=user.account%></td>
               <td><%=user.name%></td>
               <td><%=user.permission%></td>
               <td><%=user.createdAt.toLocaleString()%></td>

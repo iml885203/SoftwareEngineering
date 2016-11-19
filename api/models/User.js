@@ -10,10 +10,14 @@ var bcrypt = require('bcrypt-nodejs');
 module.exports = {
   connection: 'someMongodbServer',
   attributes: {
-    name: {
+    account: {
       type: 'string',
       required: true,
       unique: true
+    },
+    name: {
+      type: 'string',
+      required: true,
     },
     password: {
       type: 'string',
@@ -30,13 +34,16 @@ module.exports = {
   },
 
   validationMessages: {
-      name: {
-          required: 'name 必須輸入',
-          unique: 'name 已被使用'
-      },
-      password: {
-          required: 'password 必須輸入'
-      }
+    account: {
+      required: 'account 必須輸入',
+    },
+    name: {
+      required: 'name 必須輸入',
+      unique: 'name 已被使用'
+    },
+    password: {
+      required: 'password 必須輸入'
+    },
   },
 
   beforeCreate: function(user, cb) {

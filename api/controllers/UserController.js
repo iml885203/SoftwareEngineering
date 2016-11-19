@@ -9,7 +9,6 @@
 module.exports = {
 	//顯示全部使用者
 	index: function(req, res){
-		sails.log(Attr.permission);
 		User.find().then(function(users){
 			res.view('user/index', {users: users});
 		});
@@ -22,11 +21,8 @@ module.exports = {
 
 	//創建使用者
   store: function(req, res){
-		User.create({
-			name: req.body.name,
-			password: req.body.password,
-			permission: (!!req.body.permission) ? req.body.permission : 'user'
-		})
+		req.body.permission = (!!req.body.permission) ? req.body.permission : 'user';
+		User.create(req.body)
 		.then( () => {
 			res.redirect('/user');
 		})
@@ -74,7 +70,7 @@ module.exports = {
 	},
 
 	//刪除使用者
-	delete: function(req, res, id){
+	delete: function(req, res){
 		User.destroy({
 			id: req.params.id,
 		})

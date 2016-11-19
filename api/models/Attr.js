@@ -14,4 +14,24 @@ module.exports = {
     'IssueAdmin',
     'user',
   ],
+
+  issueState: [
+    'new',
+    'assigned',
+    'solved',
+    'end',
+    'sleep',
+  ],
+
+  issuePriority: [
+    'normal',
+    'important',
+    'critical',
+  ],
+
+  issueTag: [
+    'BUG',
+    'feature',
+    'patch',
+  ],
 };
