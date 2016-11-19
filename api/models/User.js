@@ -22,9 +22,6 @@ module.exports = {
     loginedAt: {
       type: 'datetime',
     },
-    isSameName: function(name){
-      return name === this.name;
-    },
     updateLoginedAt: function(){
       this.loginedAt = new Date();
       this.save();
@@ -32,33 +29,24 @@ module.exports = {
     }
   },
 
+  validationMessages: {
+      name: {
+          required: 'name 必須輸入',
+          unique: 'name 已被使用'
+      },
+      password: {
+          required: 'password 必須輸入'
+      }
+  },
+
   beforeCreate: function(user, cb) {
     bcrypt.genSalt(10, function(err, salt) {
-      bcrypt.hash(user.password, salt, function(err, hash) {
-        if (err) {
-          console.log(err);
-          cb(err);
-        } else {
-          user.password = hash;
-          cb();
-        }
+      bcrypt.hash(user.password, salt, null, function(err, hash) {
+        if (err) return cb(err);
+        user.password = hash;
+        cb();
       });
     });
   },
-
-  CheckRepeatName: function(name, cb){
-    User.find().then((users) => {
-      let isRepeat = false;
-      users.forEach((user) => {
-        if(user.name === name) isRepeat = true;
-      });
-      cb(isRepeat);
-    }).catch( err => sails.log.error(err));;
-  }
-
-
-
-
-
 
 };

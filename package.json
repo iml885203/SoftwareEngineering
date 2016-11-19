@@ -25,6 +25,8 @@
     "rc": "1.0.1",
     "sails": "~0.12.7",
     "sails-disk": "~0.10.9",
+    "sails-hook-flash": "^0.2.1",
+    "sails-hook-validation": "^0.4.6",
     "sails-mongo": "^0.12.1"
   },
   "scripts": {

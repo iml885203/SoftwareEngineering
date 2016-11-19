@@ -10,21 +10,15 @@ var passport = require('passport');
 module.exports = {
   //login page
 	index: function(req, res){
-    let errorMessage = '';
-    if(typeof errorMessage != 'undefined'){
-      errorMessage = req.session.errorMessage;
-      req.session.errorMessage = undefined;
-    }
-		res.view('auth/index', { message: errorMessage });
-
-		return;
+		return res.view('auth/index');
 	},
 
   //login request
 	login: function(req, res){
 		passport.authenticate('local', function(err, user, info) {
 	    if ((err) || (!user)) {
-        req.session.errorMessage = info.message;
+				if(typeof info != 'undefined')
+					req.addFlash('warning', info.message);
         return res.redirect('/auth/login');
 	    }
 	    req.logIn(user, function(err) {
@@ -40,15 +34,6 @@ module.exports = {
 		req.logout();
 		res.redirect('/');
 	},
-
-  //register new user
-  register: function(req, res){
-    User.create({
-      name: 'asdf',
-      password: 'password'
-    }).catch( err => sails.log.error(err));
-    res.redirect('/');
-  },
 
   //api: check user name repeat
   checkNameRepeat: function(req, res){

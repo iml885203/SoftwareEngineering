@@ -38,9 +38,17 @@ module.exports.routes = {
   'GET /auth/login': 'Auth.index',
   'POST /auth/login': 'Auth.login',
   'GET /auth/logout': 'Auth.logout',
-  'GET /auth/register': 'Auth.register',
+  // 'GET /auth/create': 'Auth.register',
   //AuthApi
-  'GET /auth/checkname': 'Auth.checkNameRepeat'
+  'GET /auth/checkname': 'Auth.checkNameRepeat',
+  //User
+  'GET /user': 'User.index',
+  'GET /user/create': 'User.create',
+  'POST /user/create': 'User.store',
+  'GET /user/edit/:id': 'User.edit',
+  'UPDATE /user/edit/:id': 'User.update',
+  'DELETE /user/delete/:id': 'User.delete',
+
 
 
   /***************************************************************************
