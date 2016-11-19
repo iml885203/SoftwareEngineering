@@ -863,18 +863,18 @@ message:4,upgrade:5,noop:6},s=i(r),t={type:"error",data:"parser error"},u=a("blo
         self.on('connect', function socketConnected() {
           self.isConnecting = false;
           consolog.noPrefix(
-            '\n' +
-            '\n' +
-            // '    |>    ' + '\n' +
-            // '  \\___/  '+️
+            // '\n' +
+            // '\n' +
+            // // '    |>    ' + '\n' +
+            // // '  \\___/  '+️
+            // // '\n'+
+            //  '  |>    Now connected to Sails.' + '\n' +
+            // '\\___/   For help, see: http://bit.ly/1DmTvgK' + '\n' +
+            //  '        (using sails.io.js '+io.sails.sdk.platform+' SDK @v'+io.sails.sdk.version+')'+ '\n' +
             // '\n'+
-             '  |>    Now connected to Sails.' + '\n' +
-            '\\___/   For help, see: http://bit.ly/1DmTvgK' + '\n' +
-             '        (using sails.io.js '+io.sails.sdk.platform+' SDK @v'+io.sails.sdk.version+')'+ '\n' +
-            '\n'+
-            '\n'+
             // '\n'+
-            ''
+            // // '\n'+
+            // ''
             // ' ⚓︎ (development mode)'
             // 'e.g. to send a GET request to Sails via WebSockets, run:'+ '\n' +
             // '`io.socket.get("/foo", function serverRespondedWith (body, jwr) { console.log(body); })`'+ '\n' +

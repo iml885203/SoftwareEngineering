@@ -12,7 +12,15 @@
       <div class="form-group">
         密碼：<input type="password" name="password" value="">
       </div>
-      <input type="submit" value="送出">
+      <div class="form-group">
+        權限：
+        <select name="permission" class="selectpicker">
+          <% permissions.forEach((permission) => { %>
+            <option value="<%=permission%>"><%=permission%></option>
+          <% }) %>
+        </select>
+      </div>
+      <input type="submit" value="送出" class="btn btn-default">
 
     </form>
 

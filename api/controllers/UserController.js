@@ -9,6 +9,7 @@
 module.exports = {
 	//顯示全部使用者
 	index: function(req, res){
+		sails.log(Attr.permission);
 		User.find().then(function(users){
 			res.view('user/index', {users: users});
 		});
@@ -16,7 +17,7 @@ module.exports = {
 
   //顯示創建使用者頁面
   create: function(req, res){
-    res.view('user/create');
+    res.view('user/create', { permissions: Attr.permission });
   },
 
 	//創建使用者
@@ -29,7 +30,10 @@ module.exports = {
 		.then( () => {
 			res.redirect('/user');
 		})
-		.catch( err => res.view('user/create', { waring : JSON.stringify(err.Errors) }));
+		.catch( (err) => {
+			req.addFlash('warning', JSON.stringify(err.Errors));
+			res.redirect('/user/create');
+		});
   },
 
 	//顯示編輯使用者頁面
@@ -42,9 +46,13 @@ module.exports = {
 				user : user,
 			});
 		})
-		.catch( err => res.serverError(err));
+		.catch( (err) => {
+			req.addFlash('warning', JSON.stringify(err.Errors));
+			res.redirect('/user');
+		});
 	},
 
+	//變更使用者資料
 	update: function(req, res){
 		if(!!req.body.password){
 			bcrypt.genSalt(10, function(err, salt) {
@@ -65,6 +73,7 @@ module.exports = {
 		});
 	},
 
+	//刪除使用者
 	delete: function(req, res, id){
 		User.destroy({
 			id: req.params.id,
