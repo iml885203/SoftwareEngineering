@@ -13,12 +13,12 @@ passport.deserializeUser(function(id, done) {
 });
 
 passport.use(new LocalStrategy({
-    usernameField: 'name',
+    usernameField: 'account',
     passwordField: 'password'
   },
-  function(name, password, done) {
+  function(account, password, done) {
 
-    User.findOneByName(name, function (err, user) {
+    User.findOneByAccount(account, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: '找不到使用者' });

@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <form action="<%=form.action%>" method="<%=form.method%>" class="form-horizontal">
+      <% for(var name in form.input) { %>
+        <div class="form-group">
+          <label class="col-md-2 control-label"><%=form.input[name].title%></label>
+          <div class="col-md-10">
+            <input
+              name="<%=name%>"
+              type="<%=(typeof form.input[name].type != 'undefined') ?
+                    form.input[name].type : 'text'%>"
+              class="form-control">
+            <br>
+          </div>
+        </div>
+      <% } %>
+      
