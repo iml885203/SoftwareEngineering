@@ -40,13 +40,25 @@ module.exports.routes = {
   'GET /auth/logout': 'Auth.logout',
   //AuthApi
   'GET /auth/checkname': 'Auth.checkNameRepeat',
+
+  // ----------
+  // admin-----
+  // ----------
+  'GET /admin': 'admin/home.index',
   //User
-  'GET /user': 'User.index',
-  'GET /user/create': 'User.create',
-  'POST /user/create': 'User.store',
-  'GET /user/edit/:id': 'User.edit',
-  'UPDATE /user/edit/:id': 'User.update',
-  'DELETE /user/delete/:id': 'User.delete',
+  'GET /admin/user': 'admin/User.index',
+  'GET /admin/user/create': 'admin/User.create',
+  'POST /admin/user/create': 'admin/User.store',
+  'GET /admin/user/edit/:id': 'admin/User.edit',
+  'UPDATE /admin/user/edit/:id': 'admin/User.update',
+  'DELETE /admin/user/delete/:id': 'admin/User.delete',
+  //Project
+  'GET /admin/project': 'admin/Project.index',
+  'GET /admin/project/create': 'admin/Project.create',
+  'POST /admin/project/create': 'admin/Project.store',
+  'GET /admin/project/edit/:id': 'admin/Project.edit',
+  'UPDATE /admin/project/edit/:id': 'admin/Project.update',
+  'DELETE /admin/project/delete/:id': 'admin/Project.delete',
 
 
 

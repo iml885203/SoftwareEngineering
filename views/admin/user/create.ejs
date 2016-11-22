@@ -1,0 +1,38 @@
+<% include partials/BackToIndex %>
+<%
+  var form = {
+    action: '/admin/user/create',
+    method: 'POST',
+    input: {
+      account: {
+        title: '帳號',
+      },
+      name: {
+        title: '暱稱',
+      },
+      password: {
+        title: '密碼',
+        type: 'password',
+      },
+    },
+  }
+%>
+<% include ../partials/FormOpen %>
+
+<div class="form-group">
+  <label class="col-md-2 control-label">權限</label>
+  <div class="col-md-10">
+    <select name="permission" class="selectpicker">
+      <% permissions.forEach((permission) => { %>
+        <option value="<%=permission%>"><%=permission%></option>
+      <% }) %>
+    </select>
+  </div>
+</div>
+
+<%
+  var form = {
+    submit: '送出',
+  }
+%>
+<% include ../partials/FormClose %>

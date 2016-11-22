@@ -10,13 +10,13 @@ module.exports = {
 	//顯示全部使用者
 	index: function(req, res){
 		User.find().then(function(users){
-			res.view('user/index', {users: users});
+			res.view('admin/user/index', {users: users});
 		});
 	},
 
   //顯示創建使用者頁面
   create: function(req, res){
-    res.view('user/create', { permissions: Attr.permission });
+    res.view('admin/user/create', { permissions: Attr.permission });
   },
 
 	//創建使用者
@@ -38,13 +38,14 @@ module.exports = {
 			id: req.params.id,
 		})
 		.then( (user) => {
-			res.view('user/edit', {
+			res.view('admin/user/edit', {
+        permissions: Attr.permission,
 				user : user,
 			});
 		})
 		.catch( (err) => {
 			handleErr.handleValidateError(req, err);
-			res.redirect('/user');
+			res.redirect('/admin/user');
 		});
 	},
 
@@ -61,11 +62,11 @@ module.exports = {
 			id: req.params.id,
 		},req.body)
 		.then( () => {
-			res.redirect('/user');
+			res.redirect('/admin/user');
 		})
 		.catch( (err) => {
 			handleErr.handleValidateError(req, err);
-			res.redirect(`/user/edit/${req.params.id}`);
+			res.redirect(`/admin/user/edit/${req.params.id}`);
 		});
 	},
 
@@ -75,7 +76,7 @@ module.exports = {
 			id: req.params.id,
 		})
 		.then( () => {
-			res.redirect('/user');
+			res.redirect('/admin/user');
 		})
 		.catch( err => res.serverError(err));
 	}

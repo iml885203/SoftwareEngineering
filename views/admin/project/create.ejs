@@ -1,0 +1,25 @@
+<% include partials/BackToIndex %>
+<%
+  var form = {
+    action: '/admin/project/create',
+    method: 'POST',
+    input: {
+      name: {
+        title: '專案名稱',
+      },
+      manager:{
+        type: 'text',
+        value: userID,
+      }
+    },
+  }
+%>
+<% include ../partials/FormOpen %>
+
+
+<%
+  var form = {
+    submit: '送出',
+  }
+%>
+<% include ../partials/FormClose %>

@@ -30,7 +30,16 @@ module.exports = {
       this.loginedAt = new Date();
       this.save();
       return;
-    }
+    },
+
+    manageProject: {
+      collection: 'project',
+      via: 'manager',
+    },
+    joinProject: {
+      collection: 'project',
+      via: 'members',
+    },
   },
 
   validationMessages: {

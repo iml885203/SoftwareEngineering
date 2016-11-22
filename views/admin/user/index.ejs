@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <a href="/admin/user/create">
+      <button type="button" class="btn btn-default">
+        創建使用者
+      </button>
+    </a>
+    <table class="table">
+      <thead>
+        <th>帳號</th>
+        <th>暱稱</th>
+        <th>權限</th>
+        <th>創建日期</th>
+        <th>功能</th>
+      </thead>
+      <tbody>
+        <% if(users.length){ %>
+          <% users.forEach(function(user){ %>
+            <tr>
+              <td><%=user.account%></td>
+              <td><%=user.name%></td>
+              <td><%=user.permission%></td>
+              <td><%=user.createdAt.toLocaleString()%></td>
+              <td>
+                <a href="/admin/user/edit/<%=user.id%>" class="glyphicon glyphicon-edit"></a>
+                <form action="/admin/user/delete/<%=user.id%>" class="inline-block">
+                  <button type="submit" class="btn btn-link">
+                    <i class="glyphicon glyphicon-remove"></i>
+                  </button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -34,6 +34,9 @@ module.exports.policies = {
     'logout': 'isLogined',//設為需登入才能存取
   },
 
+  'admin/home': 'setAdminLayout',
+  'admin/user': 'setAdminLayout',
+
   /***************************************************************************
   *                                                                          *
   * Here's an example of mapping some policies to run before a controller    *
