@@ -27,7 +27,7 @@ module.exports = {
 			res.redirect('/user');
 		})
 		.catch( (err) => {
-			req.addFlash('warning', JSON.stringify(err.Errors));
+      handleErr.handleValidateError(req, err);
 			res.redirect('/user/create');
 		});
   },
@@ -43,7 +43,7 @@ module.exports = {
 			});
 		})
 		.catch( (err) => {
-			req.addFlash('warning', JSON.stringify(err.Errors));
+			handleErr.handleValidateError(req, err);
 			res.redirect('/user');
 		});
 	},
@@ -64,7 +64,7 @@ module.exports = {
 			res.redirect('/user');
 		})
 		.catch( (err) => {
-			req.addFlash('danger', JSON.stringify(err.Errors));
+			handleErr.handleValidateError(req, err);
 			res.redirect(`/user/edit/${req.params.id}`);
 		});
 	},
