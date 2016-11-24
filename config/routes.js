@@ -62,6 +62,7 @@ module.exports.routes = {
 
   //Project前台
   'GET /project': 'Project.index',
+  'GET /project/myProject': 'Project.myProject',
 
   /***************************************************************************
   *                                                                          *
