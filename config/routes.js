@@ -60,7 +60,8 @@ module.exports.routes = {
   'UPDATE /admin/project/edit/:id': 'admin/Project.update',
   'DELETE /admin/project/delete/:id': 'admin/Project.delete',
 
-
+  //Project前台
+  'GET /project': 'Project.index',
 
   /***************************************************************************
   *                                                                          *
