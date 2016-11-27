@@ -43,13 +43,13 @@ module.exports = {
     },
 
     //Issue
-    createUser: {
+    createIssue: {
       collection: 'issue',
-      via: 'manager',
+      via: 'createUser',
     },
-    assignUser: {
+    assignIssue: {
       collection: 'issue',
-      via: 'manager',
+      via: 'assignUser',
     },
   },
 
