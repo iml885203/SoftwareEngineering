@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <table class="table">
+      <thead>
+        <th>專案名稱</th>
+        <th>權限</th>
+      </thead>
+      <tbody>
+        <!--我管理的專案-->
+        <% if(manageProjects.length){ %>
+          <% manageProjects.forEach(function(project){ %>
+            <tr>
+              <td><%=project.name%></td>
+              <td>PM</td>
+            </tr>
+          <% }) %>
+        <% } %>
+        <!--我參與的專案-->
+        <% if(joinProjects.length){ %>
+          <% joinProjects.forEach(function(project){ %>
+            <tr>
+              <td><%=project.name%></td>
+              <td>Engineer</td>
+            </tr>
+          <% }) %>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</div>

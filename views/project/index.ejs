@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <table class="table">
+      <thead>
+        <th>專案名稱</th>
+        <th>PM</th>
+      </thead>
+      <tbody>
+        <% if(projects.length){ %>
+          <% projects.forEach(function(project){ %>
+            <tr>
+              <td><%=project.name%></td>
+              <td><%=project.manager%></td>
+            </tr>
+          <% }) %>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</div>
