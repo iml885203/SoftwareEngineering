@@ -8,29 +8,35 @@
 module.exports = {
 	//
 	index: function(req, res){
-		sails.log('see project');
-		Project.find().then(function(projects){
-			res.view('project/index', {projects: projects});
+		Project.find()
+		.populate('manager')
+		.then( (projects) => {
+			res.view('project/index', {
+				projects: projects
+			});
 		});
 	},
+
 	//
 	myProject: function(req, res){
-		sails.log(req.session.passport);
+		//sails.log(req.session.passport);
 		if(!!req.session.passport){
-			User.findOne({
-				id: req.session.passport.user,
+			Project.find({
+				manager: req.session.passport.user
+			},{
+				members: req.session.passport.user
 			})
-			.then( (user) => {
-				sails.log(user);
+			.populate('manager')
+			.populate('members')
+			.then( (projects) => {
+				//sails.log(projects);
 				res.view('project/myProject', {
-					user : user,
-					manageProjects : user.manageProject,
-					joinProjects : user.joinProject,
+					projects: projects,
 				});
 			})
 		}
 		else {
-			//TODO 
+			//TODO
 			res.redirect('/project');
 		}
 	},

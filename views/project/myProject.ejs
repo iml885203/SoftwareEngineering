@@ -6,21 +6,13 @@
         <th>權限</th>
       </thead>
       <tbody>
-        <!--我管理的專案-->
-        <% if(manageProjects.length){ %>
-          <% manageProjects.forEach(function(project){ %>
+        <!-- 我參與的專案 -->
+        <!-- 權限分為PM及Engineer -->
+        <% if(projects.length){ %>
+          <% projects.forEach(function(project){ %>
             <tr>
               <td><%=project.name%></td>
-              <td>PM</td>
-            </tr>
-          <% }) %>
-        <% } %>
-        <!--我參與的專案-->
-        <% if(joinProjects.length){ %>
-          <% joinProjects.forEach(function(project){ %>
-            <tr>
-              <td><%=project.name%></td>
-              <td>Engineer</td>
+              <td><%=(project.manager.id == req.session.passport.user) ? 'PM' : 'Engineer' %></td>
             </tr>
           <% }) %>
         <% } %>
