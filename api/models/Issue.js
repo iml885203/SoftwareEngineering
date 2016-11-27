@@ -1,5 +1,5 @@
 /**
- * Project.js
+ * Issue.js
  *
  * @description :: TODO: You might write a short summary of how this model works and what it represents here.
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
@@ -11,16 +11,21 @@ module.exports = {
     name: {
       type: 'string',
       required: true,
-      unique: true,
     },
-    manager: {
+    tag: {
+      type: 'string',
+    },
+    priorty: {
+      type: 'string',
+      required: true,
+    },
+    createUser: {
       model: 'user',
       required: true,
     },
-    members: {
-      collection: 'user',
-      via: 'joinProject',
-      dominant: true,
+    assignUser: {
+      model: 'user',
+      required: true,
     },
   }
 };

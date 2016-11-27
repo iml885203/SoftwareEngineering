@@ -23,7 +23,8 @@
               <span class="glyphicon glyphicon-log-in"></span>
             </a>
           <% } else { %>
-            <a href="/auth/logout">
+            <a href="#" class="inline-block"><%=req.session.passport.username%></a>
+            <a href="/auth/logout" class="inline-block">
               登出
               <span class="glyphicon glyphicon-log-out"></span>
             </a>

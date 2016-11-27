@@ -1,30 +1,28 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-    <a href="/user/create">
+    <a href="/admin/project/create">
       <button type="button" class="btn btn-default">
-        創建使用者
+        創建專案
       </button>
     </a>
     <table class="table">
       <thead>
-        <th>帳號</th>
-        <th>暱稱</th>
-        <th>權限</th>
+        <th>專案名稱</th>
+        <th>PM</th>
         <th>創建日期</th>
-        <th>功能</th>
       </thead>
       <tbody>
-        <% if(users.length){ %>
-          <% users.forEach(function(user){ %>
+        <% if(projects.length){ %>
+          <% projects.forEach(function(project){ %>
             <tr>
-              <td><%=user.account%></td>
-              <td><%=user.name%></td>
-              <td><%=user.permission%></td>
-              <td><%=user.createdAt.toLocaleString()%></td>
+              <td><%=project.name%></td>
+              <td><%=project.manager.name%></td>
+              <td><%=project.createdAt.toLocaleString()%></td>
               <td>
-                <a href="/user/edit/<%=user.id%>" class="glyphicon glyphicon-edit"></a>
-                <form action="/user/delete/<%=user.id%>" class="inline-block">
-                  <button type="submit" class="btn btn-link">
+                <a href="/admin/project/edit/<%=project.id%>" class="glyphicon glyphicon-search"></a>
+                <a href="/admin/project/edit/<%=project.id%>" class="glyphicon glyphicon-edit"></a>
+                <form action="/admin/project/delete/<%=project.id%>" class="inline-block">
+                  <button type="submit" class="btn-link">
                     <i class="glyphicon glyphicon-remove"></i>
                   </button>
                 </form>

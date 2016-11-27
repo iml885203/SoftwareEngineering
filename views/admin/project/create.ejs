@@ -1,15 +1,15 @@
 <% include partials/BackToIndex %>
 <%
   var form = {
-    action: '/admin/project/create',
+    action: '/project/create',
     method: 'POST',
     input: {
       name: {
-        title: '專案名稱',
+        title: '名稱',
       },
       manager:{
-        type: 'text',
-        value: userID,
+        type: 'hidden',
+        value: req.session.passport.user,
       }
     },
   }

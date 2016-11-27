@@ -34,8 +34,9 @@ module.exports.policies = {
     'logout': 'isLogined',//設為需登入才能存取
   },
 
-  'admin/home': 'setAdminLayout',
-  'admin/user': 'setAdminLayout',
+  'admin/home': ['isLogined', 'setAdminLayout'],
+  'admin/user': ['isLogined', 'setAdminLayout'],
+  'admin/project': ['isLogined', 'setAdminLayout'],
 
   /***************************************************************************
   *                                                                          *

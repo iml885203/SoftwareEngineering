@@ -3,16 +3,18 @@
     <form action="<%=form.action%>" method="<%=form.method%>" class="form-horizontal">
       <% for(var name in form.input) { %>
         <div class="form-group">
-          <label class="col-md-2 control-label"><%=form.input[name].title%></label>
+          <label class="col-md-2 control-label">
+            <%=(!!form.input[name].title) ? form.input[name].title : ''%>
+          </label>
           <div class="col-md-10">
             <input
               name="<%=name%>"
-              type="<%=(typeof form.input[name].type != 'undefined') ?
+              type="<%=(!!form.input[name].type) ?
                     form.input[name].type : 'text'%>"
               class="form-control"
-              value="<%=(typeof form.input[name].value != 'undefined') ?
+              value="<%=(!!form.input[name].value) ?
                     form.input[name].value : ''%>"
-              <%=(typeof form.input[name].disabled != 'undefined') ?
+              <%=(!!form.input[name].disabled) ?
                     form.input[name].disabled : ''%>
             >
             <br>

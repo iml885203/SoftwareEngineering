@@ -52,12 +52,14 @@ module.exports.routes = {
   'GET /admin/user/edit/:id': 'admin/User.edit',
   'UPDATE /admin/user/edit/:id': 'admin/User.update',
   'DELETE /admin/user/delete/:id': 'admin/User.delete',
+
   //Project
   'GET /admin/project': 'admin/Project.index',
+  // 'GET /admin/project/:id': 'admin/Project.show',
   'GET /admin/project/create': 'admin/Project.create',
   'POST /admin/project/create': 'admin/Project.store',
-  'GET /admin/project/edit/:id': 'admin/Project.edit',
-  'UPDATE /admin/project/edit/:id': 'admin/Project.update',
+  // 'GET /admin/project/edit/:id': 'admin/Project.edit',
+  // 'UPDATE /admin/project/edit/:id': 'admin/Project.update',
   'DELETE /admin/project/delete/:id': 'admin/Project.delete',
 
 

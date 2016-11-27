@@ -32,6 +32,7 @@ module.exports = {
       return;
     },
 
+    //project
     manageProject: {
       collection: 'project',
       via: 'manager',
@@ -39,6 +40,16 @@ module.exports = {
     joinProject: {
       collection: 'project',
       via: 'members',
+    },
+
+    //Issue
+    createUser: {
+      collection: 'issue',
+      via: 'manager',
+    },
+    assignUser: {
+      collection: 'issue',
+      via: 'manager',
     },
   },
 

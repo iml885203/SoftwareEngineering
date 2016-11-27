@@ -8,15 +8,33 @@
 module.exports = {
 	//
 	index: function(req, res){
+		Project.find().populate('manager').then(function(projects){
+			res.view('admin/project/index', {projects: projects});
+		});
+	},
+
+	//
+	show: function(req, res){
+		// Project.findOne({
+		// 	id: req.params.id,
+		// })
+		// .then( (project) => {
+		// 	res.view('admin/project/show', {
+    //     permissions: Attr.permission,
+		// 		project : project,
+		// 	});
+		// })
+		// .catch( (err) => {
+		// 	handleErr.handleValidateError(req, err);
+		// 	res.redirect('/admin/project');
+		// });
 		res.redirect('/admin');
 	},
 
 	//
 	create: function(req, res){
-		sails.log(req.session.passport.user);
 		res.view('admin/project/create', {
 			permissions: Attr.permission,
-			userID: req.session.passport.user,
 		});
 	},
 
