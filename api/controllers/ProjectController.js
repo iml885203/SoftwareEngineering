@@ -9,7 +9,7 @@ module.exports = {
 	//
 	index: function(req, res){
 		sails.log('see project');
-		Project.find().then(function(projects){
+		Project.find().populate('manager').then(function(projects){
 			res.view('project/index', {projects: projects});
 		});
 	},
@@ -30,8 +30,26 @@ module.exports = {
 			})
 		}
 		else {
-			//TODO 
+			//TODO
 			res.redirect('/project');
 		}
+	},
+	//
+	create: function(req, res){
+		res.view('project/create', {
+			permissions: Attr.permission,
+		});
+	},
+	//
+	store: function(req, res){
+		res.json({data: req.body});
+		// Project.create(req.body)
+		// .then( () => {
+		// 	res.redirect('/project');
+		// })
+		// .catch( (err) => {
+    //   handleErr.handleValidateError(req, err);
+		// 	res.redirect('/project/create');
+		// });
 	},
 };

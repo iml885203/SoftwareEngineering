@@ -37,19 +37,19 @@ module.exports = {
       collection: 'project',
       via: 'manager',
     },
-    joinProject: {
+    joinProjects: {
       collection: 'project',
       via: 'members',
     },
 
     //Issue
-    createUser: {
+    createdIssues: {
       collection: 'issue',
-      via: 'manager',
+      via: 'createUser',
     },
-    assignUser: {
+    assignedIssues: {
       collection: 'issue',
-      via: 'manager',
+      via: 'assignUser',
     },
   },
 

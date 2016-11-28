@@ -19,7 +19,7 @@ module.exports = {
     },
     members: {
       collection: 'user',
-      via: 'joinProject',
+      via: 'joinProjects',
       dominant: true,
     },
   }

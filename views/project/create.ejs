@@ -1,0 +1,42 @@
+
+<%
+  var form = {
+    action: '/project/create',
+    method: 'POST',
+    input: {
+      name: {
+        title: '名稱',
+      },
+      showManager:{
+        title: 'PM',
+        type: 'text',
+        value: req.session.passport.username,
+        disabled: 'disabled',
+      },
+      manager:{
+        type: 'hidden',
+        value: req.session.passport.user,
+      },
+    },
+  }
+%>
+<% include ../partials/FormOpen %>
+<div class="form-group">
+  <label class="col-md-2 control-label">成員</label>
+  <div class="col-md-10">
+    <div class="js-select-members">
+      <div id="hacker-list">
+        <ul class="selected-list"></ul>
+        <input class="search form-control" />
+        <ul class="list"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%
+  var form = {
+    submit: '送出',
+  }
+%>
+<% include ../partials/FormClose %>

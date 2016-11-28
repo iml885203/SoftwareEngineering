@@ -40,6 +40,11 @@ module.exports.routes = {
   'GET /auth/logout': 'Auth.logout',
   //AuthApi
   'GET /auth/checkname': 'Auth.checkNameRepeat',
+  //Project前台
+  'GET /project': 'Project.index',
+  'GET /project/myProject': 'Project.myProject',
+  'GET /project/create': 'Project.create',
+  'POST /project/create': 'Project.store',
 
   // ----------
   // admin-----
@@ -62,9 +67,10 @@ module.exports.routes = {
   // 'UPDATE /admin/project/edit/:id': 'admin/Project.update',
   'DELETE /admin/project/delete/:id': 'admin/Project.delete',
 
-  //Project前台
-  'GET /project': 'Project.index',
-  'GET /project/myProject': 'Project.myProject',
+  // ----------
+  // api-----
+  // ----------
+  'GET /api/user/getMemberList': 'api/User.getMemberList',
 
   /***************************************************************************
   *                                                                          *
