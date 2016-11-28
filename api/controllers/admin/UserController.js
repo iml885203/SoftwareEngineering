@@ -24,11 +24,11 @@ module.exports = {
 		req.body.permission = (!!req.body.permission) ? req.body.permission : 'user';
 		User.create(req.body)
 		.then( () => {
-			res.redirect('/user');
+			res.redirect('/admin/user');
 		})
 		.catch( (err) => {
       handleErr.handleValidateError(req, err);
-			res.redirect('/user/create');
+			res.redirect('/admin/user/create');
 		});
   },
 

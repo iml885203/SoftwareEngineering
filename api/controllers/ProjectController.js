@@ -48,14 +48,30 @@ module.exports = {
 	},
 	//
 	store: function(req, res){
-		res.json({data: req.body});
-		// Project.create(req.body)
-		// .then( () => {
-		// 	res.redirect('/project');
-		// })
-		// .catch( (err) => {
-    //   handleErr.handleValidateError(req, err);
-		// 	res.redirect('/project/create');
-		// });
+		Project.create(req.body)
+		.then( (newProject) => {
+			res.redirect('/project');
+		})
+		.catch( (err) => {
+      handleErr.handleValidateError(req, err);
+			res.redirect('/project/create');
+		});
 	},
+	//顯示專案概觀
+	show: function(req, res){
+		Project.findOneById(req.params.id)
+		.populate('manager')
+		.populate('members')
+		.then( (project) => {
+			// res.redirect('/project');
+			// res.json(project);
+			res.view('project/show', {
+				project: project,
+			})
+		})
+		.catch( (err) => {
+      handleErr.handleValidateError(req, err);
+			res.redirect('/project');
+		});
+	}
 };

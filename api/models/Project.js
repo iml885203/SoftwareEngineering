@@ -13,6 +13,9 @@ module.exports = {
       required: true,
       unique: true,
     },
+    info: {
+      type: 'string',
+    },
     manager: {
       model: 'user',
       required: true,

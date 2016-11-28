@@ -1,0 +1,60 @@
+
+
+<div class="row">
+  <!-- navbar links -->
+  <div class="col-md-8 col-md-offset-2">
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active">
+        <a href="#">概觀</a>
+      </li>
+      <li role="presentation">
+        <a href="#">問題清單</a>
+      </li>
+      <li role="presentation">
+        <a href="#">test</a>
+      </li>
+    </ul>
+
+  </div>
+
+  <div class="col-md-8 col-md-offset-2">
+    <!-- 關於專案 -->
+    <div class="col-md-12">
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          關於
+        </div>
+        <div class="panel-body">
+          <%=project.info %>
+        </div>
+      </div>
+    </div>
+    <!-- 專案成員們 -->
+    <div class="col-md-6">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          參與成員
+        </div>
+        <div class="panel-body">
+          <h3>專案管理員</h3>
+          <p><%=project.manager.name%></p>
+          <h3>成員</h3>
+          <% project.members.forEach(function(member){ %>
+            <p><%=member.name %></p>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+    <!-- issue追蹤 -->
+    <div class="col-md-6">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          問題追蹤
+        </div>
+        <div class="panel-body">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

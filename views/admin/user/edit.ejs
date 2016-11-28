@@ -27,7 +27,7 @@
   <div class="col-md-10">
     <select name="permission" class="selectpicker" value="<%=user.permission%>">
       <% permissions.forEach((permission) => { %>
-        <option value="<%=permission%>" selected="<%=(permission === user.permission) ? 'selected' : ''%>"><%=permission%></option>
+        <option value="<%=permission%>" "<%=(permission === user.permission) ? 'selected' : ''%>"><%=permission%></option>
       <% }) %>
     </select>
   </div>

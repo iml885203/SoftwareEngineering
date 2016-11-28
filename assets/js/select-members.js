@@ -10,11 +10,9 @@ $(function(){
       let options = {
         valueNames: [ 'account', 'name', 'id' ],
         item: '<li class="js-select-members-trigger"><span class="name"></span><span class="account badge"></span><input type="hidden" class="id" style="display: none;"/></li>',
-        page: 5,
       };
       let values = data.users;
       let hackerList = new List('hacker-list', options, values);
-
       $('.js-select-members-trigger').click(selectMember);
 
       function selectMember() {
