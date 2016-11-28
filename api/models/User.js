@@ -43,11 +43,11 @@ module.exports = {
     },
 
     //Issue
-    createdIssues: {
+    createIssue: {
       collection: 'issue',
       via: 'createUser',
     },
-    assignedIssues: {
+    assignIssue: {
       collection: 'issue',
       via: 'assignUser',
     },
