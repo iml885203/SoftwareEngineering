@@ -3,9 +3,6 @@
     ul{
       padding: 0px;
     }
-    .selected-list{
-      background-color: #eeeeee;
-    }
   }
 }
 .js-select-members-trigger{
@@ -14,10 +11,14 @@
   padding: 0.5em 1em;
   font-weight: 200;
   &:hover{
-    background-color: #eeeeee;
+    background-color: @select-background;
   }
   .badge{
     margin-left: 5px;
     font-weight: 200;
   }
+}
+.js-select-members-selected{
+  .js-select-members-trigger;
+  background-color: @select-background;
 }

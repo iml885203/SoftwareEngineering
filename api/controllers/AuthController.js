@@ -25,6 +25,7 @@ module.exports = {
         if (err) res.send(err);
         sails.log(user.name, 'Logined at', user.loginedAt);
 				req.session.passport.username = user.name;
+				req.session.passport.permission = user.permission;
         return res.redirect('/');
 	    });
     })(req, res);

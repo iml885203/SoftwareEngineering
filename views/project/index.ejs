@@ -3,12 +3,12 @@
     <table class="table">
       <thead>
         <th>專案名稱</th>
-        <th>PM</th>
+        <th>專案管理員</th>
       </thead>
       <tbody>
         <% if(projects.length){ %>
           <% projects.forEach(function(project){ %>
-            <tr>
+            <tr class="js-href" data-href="/project/<%=project.id%>">
               <td><%=project.name%></td>
               <td><%=project.manager.name%></td>
             </tr>

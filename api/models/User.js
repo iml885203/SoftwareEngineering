@@ -33,7 +33,7 @@ module.exports = {
     },
 
     //project
-    manageProject: {
+    manageProjects: {
       collection: 'project',
       via: 'manager',
     },

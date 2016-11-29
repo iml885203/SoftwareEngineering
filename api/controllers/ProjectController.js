@@ -20,25 +20,15 @@ module.exports = {
 	//
 	myProject: function(req, res){
 		//sails.log(req.session.passport);
-		if(!!req.session.passport){
-			Project.find({
-				manager: req.session.passport.user
-			},{
-				members: req.session.passport.user
-			})
-			.populate('manager')
-			.populate('members')
-			.then( (projects) => {
-				//sails.log(projects);
-				res.view('project/myProject', {
-					projects: projects,
-				});
-			})
-		}
-		else {
-			//TODO
-			res.redirect('/project');
-		}
+		User.findOneById(req.session.passport.user)
+		.populate('manageProjects')
+		.populate('joinProjects')
+		.then( (user) => {
+			res.view('project/myProject', {
+				manageProjects: user.manageProjects,
+				joinProjects: user.joinProjects,
+			});
+		})
 	},
 	//
 	create: function(req, res){

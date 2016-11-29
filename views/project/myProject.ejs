@@ -8,11 +8,19 @@
       <tbody>
         <!-- 我參與的專案 -->
         <!-- 權限分為PM及Engineer -->
-        <% if(projects.length){ %>
-          <% projects.forEach(function(project){ %>
-            <tr>
+        <% if(manageProjects.length){ %>
+          <% manageProjects.forEach(function(project){ %>
+            <tr class="js-href" data-href="/project/<%=project.id%>">
               <td><%=project.name%></td>
-              <td><%=(project.manager.id == req.session.passport.user) ? 'PM' : 'Engineer' %></td>
+              <td><%=(project.manager === req.session.passport.user) ? 'PM' : 'Engineer' %></td>
+            </tr>
+          <% }) %>
+        <% } %>
+        <% if(joinProjects.length){ %>
+          <% joinProjects.forEach(function(project){ %>
+            <tr class="js-href" data-href="/project/<%=project.id%>">
+              <td><%=project.name%></td>
+              <td><%=(project.manager == req.session.passport.user) ? 'PM' : 'Engineer' %></td>
             </tr>
           <% }) %>
         <% } %>

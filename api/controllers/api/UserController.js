@@ -15,6 +15,7 @@ module.exports = {
       ],
       where: {
         id: {'!': req.session.passport.user},
+				permission: 'user'
       }
     });
     users.then(function(users){

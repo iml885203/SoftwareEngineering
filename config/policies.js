@@ -36,6 +36,7 @@ module.exports.policies = {
 
   'project': {
     'create': 'isLogined',//設為需登入才能存取
+    'myProject': 'isLogined',
   },
 
   'admin/home': ['isLogined', 'setAdminLayout'],
