@@ -2,7 +2,10 @@
   font-family: "PingFang TC", "微軟正黑體", "Helvetica Neue", "Roboto", sans-serif;
 }
 
-body { padding-top: 70px; }
+body {
+  padding-top: 70px;
+  background-color: #f1f1f1;
+}
 
 .inline{
   display: inline !important;
@@ -23,10 +26,29 @@ body { padding-top: 70px; }
 .navbar-brand{
   height: 30px;
   padding: 6px 15px;
+  letter-spacing: 5px;
+}
+
+.navbar-nav>li{
+  padding-left: 1em;
+  padding-right: 1em;
+  letter-spacing: 3px;
 }
 
 .navbar-nav>li>a {
   padding-top: 6px;
   padding-bottom: 6px;
   font-weight: 200;
+}
+
+.navbar-inverse{
+  background-image: none !important;
+}
+
+.navbar-user{
+  border: 1px #9d9d9d solid;
+  padding: 2px 2em !important;
+  &:hover{
+    border-color: white;
+  }
 }

@@ -6,9 +6,9 @@
   <div class="col-md-8 col-md-offset-2">
     <!-- 關於專案 -->
     <div class="col-md-12">
-      <div class="panel panel-warning">
+      <div class="panel panel-default">
         <div class="panel-heading">
-          關於
+          專案描述
         </div>
         <div class="panel-body">
           <%=project.info %>
@@ -17,14 +17,14 @@
     </div>
     <!-- 專案成員們 -->
     <div class="col-md-6">
-      <div class="panel panel-success">
+      <div class="panel panel-default">
         <div class="panel-heading">
           參與成員
         </div>
         <div class="panel-body">
-          <h3>專案管理員</h3>
+          <h4>專案管理員</h4>
           <p><%=project.manager.name%></p>
-          <h3>成員</h3>
+          <h4>成員</h4>
           <% project.members.forEach(function(member){ %>
             <p><%=member.name %></p>
           <% }) %>
@@ -33,7 +33,7 @@
     </div>
     <!-- issue追蹤 -->
     <div class="col-md-6">
-      <div class="panel panel-info">
+      <div class="panel panel-default">
         <div class="panel-heading">
           問題追蹤
         </div>
