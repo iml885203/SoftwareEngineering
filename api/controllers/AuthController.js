@@ -10,7 +10,7 @@ var passport = require('passport');
 module.exports = {
   //login page
 	index: function(req, res){
-		return res.view('auth/index');
+		return res.view('auth/index', {pageTitle: '登入'});
 	},
 
   //login request
@@ -53,7 +53,10 @@ module.exports = {
 		.populate('manageProjects')
 		.populate('joinProjects')
 		.then( (user) => {
-			res.view('auth/show', {user: user});
+			res.view('auth/show', {
+				user: user,
+				pageTitle: '個人資料',
+			});
 		});
 	}
 };

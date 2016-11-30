@@ -13,7 +13,7 @@ module.exports = {
 		.then( (projects) => {
 			res.view('project/index', {
 				projects: projects,
-				projectTitle: '全部專案',
+				pageTitle: '全部專案',
 			});
 		});
 	},
@@ -28,7 +28,7 @@ module.exports = {
 			res.view('project/myProject', {
 				manageProjects: user.manageProjects,
 				joinProjects: user.joinProjects,
-				projectTitle: '我參與的專案',
+				pageTitle: '我參與的專案',
 			});
 		})
 	},
@@ -36,6 +36,7 @@ module.exports = {
 	create: function(req, res){
 		res.view('project/create', {
 			permissions: Attr.permission,
+			pageTitle: '新增專案',
 		});
 	},
 	//
@@ -59,7 +60,7 @@ module.exports = {
 			// res.json(project);
 			res.view('project/show', {
 				project: project,
-				projectTitle: project.name,
+				pageTitle: project.name,
 			})
 		})
 		.catch( (err) => {
