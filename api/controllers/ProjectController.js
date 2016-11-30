@@ -12,7 +12,8 @@ module.exports = {
 		.populate('manager')
 		.then( (projects) => {
 			res.view('project/index', {
-				projects: projects
+				projects: projects,
+				projectTitle: '全部專案',
 			});
 		});
 	},
@@ -27,6 +28,7 @@ module.exports = {
 			res.view('project/myProject', {
 				manageProjects: user.manageProjects,
 				joinProjects: user.joinProjects,
+				projectTitle: '我參與的專案',
 			});
 		})
 	},
@@ -57,6 +59,7 @@ module.exports = {
 			// res.json(project);
 			res.view('project/show', {
 				project: project,
+				projectTitle: project.name,
 			})
 		})
 		.catch( (err) => {
