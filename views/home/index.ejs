@@ -1,1 +1,35 @@
-I am HomePage
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 text-center home-shit">
+    <h1>
+      Issue Tracking System
+    </h1>
+    <div>
+      <% if(typeof req.session.passport == 'undefined' || typeof req.session.passport.user == 'undefined'){ %>
+        <a href="#">註冊</a>
+        <a href="/auth/login">登入</a>
+      <% } else { %>
+        <div class="logined">
+          Welcome <span><%=req.session.passport.username%></span>
+        </div>
+      <% } %>
+    </div>
+    <p>
+      「 一時的錯誤不算什麼，錯而不改才是一生中永遠且最大的錯誤。」
+    </p>
+    <hr>
+    <p>
+      我們不在乎你是否使用這網頁，而傾向打造一個好用的ITS。任何一門創作形式，都從創作者的接觸並使用開始，而我們潛心打造的，正是這項技藝的絕佳登堂之門。
+    </p>
+  </div>
+  <div class="col-md-10 col-md-offset-1 text-center home-shit-about">
+    <h1>
+      ABOUT TEAM
+    </h1>
+    <div>
+      <hr>
+    </div>
+    <p>
+      ITS團隊來自於臺北科技大學-資訊工程系，草創於軟體工程課程上，透過每週Meeting的方式，討論與撰寫關於ITS的規劃文件，從一開始的一個人到一群人，再到現在的一個團隊，過程中經過了許多波折，甚至是隊友的離開，但這些都不是豬隊友，我們都全心投入於軟體開發，並且注重軟體工程的規則，分析、設計、開發、測試，在這基本過程中帶入我們的想法與熱情，才會有現在的ITS，為世界創造更多價值。
+    </p>
+  </div>
+</div>
