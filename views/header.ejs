@@ -26,7 +26,7 @@
               <span class="glyphicon glyphicon-log-in"></span>
             </a>
           <% } else { %>
-            <a href="#" class="inline-block navbar-user"><%=req.session.passport.username%></a>
+            <a href="/auth/show" class="inline-block navbar-user"><%=req.session.passport.username%></a>
             <a href="/auth/logout" class="inline-block">
               登出
               <span class="glyphicon glyphicon-log-out"></span>

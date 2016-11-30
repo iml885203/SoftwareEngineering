@@ -45,5 +45,15 @@ module.exports = {
     User.CheckRepeatName(req.query.name, (isRepeat) => {
       return res.json({isRepeat: isRepeat});
     });
-  }
+  },
+
+	//show user info
+	show: function(req, res){
+		User.findOneById(req.session.passport.user)
+		.populate('manageProjects')
+		.populate('joinProjects')
+		.then( (user) => {
+			res.view('auth/show', {user: user});
+		});
+	}
 };

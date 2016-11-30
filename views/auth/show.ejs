@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 text-center authShow">
+    <div class="inline-block title">
+      <div class="image">
+        <div>
+          <%=user.name.charAt(0)%>
+        </div>
+      </div>
+      <h3>
+        <%=user.name%>
+      </h3>
+      <p>
+        <%=user.account%>
+      </p>
+    </div>
+
+
+    <p>
+      註冊日期 <%=user.createdAt.toLocaleString()%>
+    </p>
+    <p>
+      最後上線 <%=user.loginedAt.toLocaleString()%>
+    </p>
+    <br>
+    <div class="projects">
+      <h4>參與專案</h4>
+      <% user.manageProjects.forEach(function(project){ %>
+        <span><%=project.name%></span>
+      <% }) %>
+      <% user.joinProjects.forEach(function(project){ %>
+        <span><%=project.name%></span>
+      <% }) %>
+    </div>
+
+
+
+  </div>
+</div>

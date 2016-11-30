@@ -38,6 +38,7 @@ module.exports.routes = {
   'GET /auth/login': 'Auth.index',
   'POST /auth/login': 'Auth.login',
   'GET /auth/logout': 'Auth.logout',
+  'GET /auth/show': 'Auth.show',
   //AuthApi
   'GET /auth/checkname': 'Auth.checkNameRepeat',
   //Project前台
