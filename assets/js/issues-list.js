@@ -14,5 +14,28 @@ $(function(){
         outerWindow: 1,
       })]
     });
+
+    $('.sort').on('click', clickSort);
+
+    function clickSort(){
+      let $triangleTop = '<span class="glyphicon glyphicon-triangle-top"></span>';
+      let $triangleBottom = '<span class="glyphicon glyphicon-triangle-bottom"></span>';
+      if($('.glyphicon', this).length === 0 ||
+         $('.glyphicon-triangle-top', this).length != 0){
+        clearSortText();
+        $(this).append($triangleBottom);
+      }
+      else{
+        clearSortText();
+        $(this).append($triangleTop);
+      }
+    }
+
+    function clearSortText(){
+      $('.sort').each(function(){
+        let text = $(this).text();
+        $(this).empty().text(text);
+      });
+    }
   });
 });
