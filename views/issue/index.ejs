@@ -1,180 +1,166 @@
 <div class="row">
   <% include ../project/partials/navbar %>
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-8 col-md-offset-2 js-issues-list" id="issues-list">
     <div class="col-md-4">
-      <input type="text" class="form-control" placeholder="搜尋">
+      <input type="text" class="form-control search" placeholder="搜尋">
       <br>
     </div>
 
     <table class="table">
       <thead>
-        <th>標題</th>
-        <th>狀態</th>
-        <th>重要性<span class="glyphicon glyphicon-triangle-top"></span></th>
-        <th>標籤</th>
-        <th>指派</th>
+        <th class="sort" data-sort="name">標題</th>
+        <th class="sort" data-sort="state">狀態</th>
+        <th class="sort" data-sort="priority">重要性<span class="glyphicon glyphicon-triangle-top"></span></th>
+        <th class="sort" data-sort="tag">標籤</th>
+        <th class="sort" data-sort="assignUser">指派</th>
       </thead>
-      <tbody>
+      <tbody class="list">
         <tr>
-          <td>
+          <td class="name">
             首頁跑版
             <h6># 11天前 創建於 攻城屍2號</h6>
           </td>
-          <td>new</td>
-          <td>
+          <td class="state">new</td>
+          <td class="priority">
             <span class="label label-default">normal</span>
           </td>
-          <td>
+          <td class="tag">
             <span class="label label-danger">BUG</span>
           </td>
-          <td>攻城屍1號</td>
+          <td class="assignUser">攻城屍1號</td>
         </tr>
         <tr>
-          <td>
+          <td class="name">
             hello world
             <h6># 11天前 創建於 攻城屍2號</h6>
           </td>
-          <td>solved</td>
-          <td>
+          <td class="state">solved</td>
+          <td class="priority">
             <span class="label label-default">normal</span>
           </td>
-          <td>
+          <td class="tag">
             <span class="label label-info">feature</span>
           </td>
-          <td>攻城屍1號</td>
+          <td class="assignUser">攻城屍1號</td>
         </tr>
         <tr>
-          <td>
+          <td class="name">
             哎呦！不錯哦
             <h6># 11天前 創建於 攻城屍2號</h6>
           </td>
-          <td>new</td>
-          <td>
+          <td class="state">new</td>
+          <td class="priority">
             <span class="label label-default">normal</span>
           </td>
-          <td>
+          <td class="tag">
             <span class="label label-info">feature</span>
           </td>
-          <td>攻城屍1號</td>
+          <td class="assignUser">攻城屍1號</td>
         </tr>
         <tr>
-          <td>
+          <td class="name">
             大家好
             <h6># 11天前 創建於 攻城屍2號</h6>
           </td>
-          <td>new</td>
-          <td>
+          <td class="state">new</td>
+          <td class="priority">
             <span class="label label-default">normal</span>
           </td>
-          <td>
+          <td class="tag">
             <span class="label label-success">patch</span>
           </td>
-          <td>攻城屍1號</td>
+          <td class="assignUser">攻城屍1號</td>
         </tr>
         <tr>
-          <td>
+          <td class="name">
             呵呵
             <h6># 11天前 創建於 攻城屍2號</h6>
           </td>
-          <td>sleep</td>
-          <td>
+          <td class="state">sleep</td>
+          <td class="priority">
             <span class="label label-default">normal</span>
           </td>
-          <td>
+          <td class="tag">
             <span class="label label-info">feature</span>
           </td>
-          <td>攻城屍1號</td>
+          <td class="assignUser">攻城屍1號</td>
         </tr>
         <tr>
-          <td>
+          <td class="name">
             this is issue
             <h6># 11天前 創建於 攻城屍2號</h6>
           </td>
-          <td>end</td>
-          <td>
+          <td class="state">end</td>
+          <td class="priority">
             <span class="label label-warning">important</span>
           </td>
-          <td>
+          <td class="tag">
             <span class="label label-info">feature</span>
           </td>
-          <td>攻城屍1號</td>
+          <td class="assignUser">攻城屍1號</td>
         </tr>
         <tr>
-          <td>
+          <td class="name">
             看屁
             <h6># 11天前 創建於 攻城屍2號</h6>
           </td>
-          <td>solved</td>
-          <td>
+          <td class="state">solved</td>
+          <td class="priority">
             <span class="label label-warning">important</span>
           </td>
-          <td>
+          <td class="tag">
             <span class="label label-success">patch</span>
           </td>
-          <td>攻城屍1號</td>
+          <td class="assignUser">攻城屍1號</td>
         </tr>
         <tr>
-          <td>
+          <td class="name">
             87878787
             <h6># 11天前 創建於 攻城屍2號</h6>
           </td>
-          <td>new</td>
-          <td>
+          <td class="state">new</td>
+          <td class="priority">
             <span class="label label-warning">important</span>
           </td>
-          <td>
+          <td class="tag">
             <span class="label label-danger">BUG</span>
           </td>
-          <td>攻城屍1號</td>
+          <td class="assignUser">攻城屍1號</td>
         </tr>
         <tr>
-          <td>
+          <td class="name">
             haha
             <h6># 11天前 創建於 攻城屍2號</h6>
           </td>
-          <td>solved</td>
-          <td>
+          <td class="state">solved</td>
+          <td class="priority">
             <span class="label label-danger">critical</span>
           </td>
-          <td>
+          <td class="tag">
             <span class="label label-success">patch</span>
           </td>
-          <td>攻城屍1號</td>
+          <td class="assignUser">攻城屍1號</td>
         </tr>
         <tr>
-          <td>
+          <td class="name">
             噢噎
             <h6># 11天前 創建於 攻城屍2號</h6>
           </td>
-          <td>sleep</td>
-          <td>
+          <td class="state">sleep</td>
+          <td class="priority">
             <span class="label label-danger">critical</span>
           </td>
-          <td>
+          <td class="tag">
             <span class="label label-danger">patch</span>
           </td>
-          <td>攻城屍1號</td>
+          <td class="assignUser">攻城屍1號</td>
         </tr>
       </tbody>
     </table>
 
     <nav aria-label="Page navigation" class="text-center">
       <ul class="pagination">
-        <li>
-          <a href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li>
-          <a href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
+
       </ul>
     </nav>
   </div>
