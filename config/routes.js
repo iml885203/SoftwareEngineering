@@ -47,6 +47,8 @@ module.exports.routes = {
   'GET /project/create': 'Project.create',
   'POST /project/create': 'Project.store',
   'GET /project/:id': 'Project.show',
+  //Issue
+  'GET /project/:id/issue/create': 'Issue.create',
 
   // ----------
   // admin-----

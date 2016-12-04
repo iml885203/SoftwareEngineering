@@ -25,5 +25,20 @@ module.exports = {
       via: 'joinProjects',
       dominant: true,
     },
+  },
+
+  getById: function(id, callback){
+    Project.findOneById(id)
+		.populate('manager')
+		.populate('members')
+		.then( (project) => {
+      if(!project){
+        return callback(new Error('找不到此專案'), null);
+      }
+      return callback(null, project);
+		})
+		.catch( (err) => {
+      return callback(err, null);
+		});
   }
 };

@@ -6,28 +6,28 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li>
-          <a href="/project/create">新增專案</a>
+          <a href="<%=sails.getUrlFor('Project.create')%>">新增專案</a>
         </li>
         <li>
-          <a href="/project">全部專案</a>
+          <a href="<%=sails.getUrlFor('Project.index')%>">全部專案</a>
         </li>
         <li>
-          <a href="/project/myProject">我參與的專案</a>
+          <a href="<%=sails.getUrlFor('Project.myProject')%>">我參與的專案</a>
         </li>
         <li>
-          <a href="/admin">後台管理</a>
+          <a href="<%=sails.getUrlFor('admin/home.index')%>">後台管理</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
           <% if(typeof req.session.passport == 'undefined' || typeof req.session.passport.user == 'undefined'){ %>
-            <a href="/auth/login">
+            <a href="<%=sails.getUrlFor('Auth.login')%>">
               登入
               <span class="glyphicon glyphicon-log-in"></span>
             </a>
           <% } else { %>
-            <a href="/auth/show" class="inline-block navbar-user"><%=req.session.passport.username%></a>
-            <a href="/auth/logout" class="inline-block">
+            <a href="<%=sails.getUrlFor('Auth.show')%>" class="inline-block navbar-user"><%=req.session.passport.username%></a>
+            <a href="<%=sails.getUrlFor('Auth.logout')%>" class="inline-block">
               登出
               <span class="glyphicon glyphicon-log-out"></span>
             </a>

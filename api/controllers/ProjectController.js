@@ -52,20 +52,16 @@ module.exports = {
 	},
 	//顯示專案概觀
 	show: function(req, res){
-		Project.findOneById(req.params.id)
-		.populate('manager')
-		.populate('members')
-		.then( (project) => {
-			// res.redirect('/project');
-			// res.json(project);
+		Project.getById(req.params.id, function(err, project){
+			if(err){
+				handleErr.handleValidateError(req, err);
+				res.redirect(req.url);
+			}
 			res.view('project/show', {
 				project: project,
 				pageTitle: project.name,
-			})
-		})
-		.catch( (err) => {
-      handleErr.handleValidateError(req, err);
-			res.redirect('/project');
+				active: 'info',
+			});
 		});
 	}
 };

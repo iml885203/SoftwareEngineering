@@ -15,6 +15,7 @@ module.exports = function(req, res, next) {
     return next();
   }
   else{
+    req.session.loginBeforeURL = req.url;
     return res.redirect('/auth/login');
   }
 

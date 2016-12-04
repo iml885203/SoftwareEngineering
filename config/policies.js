@@ -31,6 +31,7 @@ module.exports.policies = {
   'auth': {
     '*': true,
     'index': 'isNotLogined',//登入後無法到此頁面
+    'login': 'isNotLogined',//登入後無法到此頁面
     'logout': 'isLogined',//設為需登入才能存取
   },
 
