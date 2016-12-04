@@ -15,6 +15,7 @@ module.exports = {
     },
     info: {
       type: 'string',
+      required: true,
     },
     manager: {
       model: 'user',
@@ -24,6 +25,16 @@ module.exports = {
       collection: 'user',
       via: 'joinProjects',
       dominant: true,
+    },
+  },
+
+  validationMessages: {
+    name: {
+      required: '名稱 必須輸入',
+      unique: '名稱 已被使用'
+    },
+    info: {
+      required: '專案描述 必須輸入',
     },
   },
 

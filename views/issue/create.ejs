@@ -1,6 +1,77 @@
 <div class="row">
   <% include ../project/partials/navbar %>
-  <div class="col-md-8 col-md-offset-2">
-    asdf
+  <%
+    var form = {
+      action: `/project/${project.id}/issue/store`,
+      method: 'POST',
+      input: {
+        name:{
+          title: '標題',
+          type: 'text',
+        },
+      }
+    }
+  %>
+  <% include ../partials/FormOpen.ejs %>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">描述</label>
+    <div class="col-md-8">
+      <textarea name="info" cols="30" rows="10" class="form-control"></textarea>
+    </div>
   </div>
+
+  <hr class="col-md-offset-3">
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">狀態</label>
+    <div class="col-md-8">
+      <select name="state" class="selectpicker" disabled>
+        <% states.forEach((state) => { %>
+          <option value="<%=state%>"><%=state%></option>
+        <% }) %>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">重要性</label>
+    <div class="col-md-8">
+      <select name="priority" class="selectpicker">
+        <option value="">請選擇</option>
+        <% priorities.forEach((priority) => { %>
+          <option value="<%=priority%>"><%=priority%></option>
+        <% }) %>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">標籤</label>
+    <div class="col-md-8">
+      <select name="tag" class="selectpicker">
+        <option value="">請選擇</option>
+        <% tags.forEach((tag) => { %>
+          <option value="<%=tag%>"><%=tag%></option>
+        <% }) %>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">指派給</label>
+    <div class="col-md-8">
+      <select name="state" class="selectpicker">
+        <option value="">請選擇</option>
+        <option value="asdf">攻城屍1號</option>
+      </select>
+    </div>
+  </div>
+
+  <%
+    var form = {
+      submit: '送出',
+    }
+  %>
+  <% include ../partials/FormClose.ejs %>
 </div>
