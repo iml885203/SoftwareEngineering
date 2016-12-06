@@ -28,8 +28,7 @@ module.exports = {
 				let cmd = ['git reset --hard',
 									'git fetch --all',
 									'git checkout master',
-									'git reset --hard origin/master',
-									'npm install'];
+									'git reset --hard origin/master'];
 				let cmdCounter = 0;
 				let runExec = function(cc){
 					exec(cmd[cc], function(error, stdout, stderr) {
