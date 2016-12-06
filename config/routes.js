@@ -79,6 +79,13 @@ module.exports.routes = {
   // ----------
   'GET /api/user/getMemberList': 'api/User.getMemberList',
 
+
+  // ------------
+  // GitAuto-----
+  // ------------
+  'GET /gitauto/generatePassword': 'gitAuto.generatePassword',
+  'GET /gitauto/master': 'gitAuto.master',
+
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
