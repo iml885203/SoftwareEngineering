@@ -25,12 +25,22 @@ module.exports = {
 	master: function(req, res){
 		if(typeof req.query.update != 'undefined'){
 			if(bcrypt.compareSync(req.query.update, hashPassword)){
-				let cmd = 'git reset --hard & git fetch --all & git checkout master & git reset --hard origin/master';
-
-				exec(cmd, function(error, stdout, stderr) {
-					sails.log(stdout);
-				});
+				let cmd = ['git reset --hard',
+									'git fetch --all',
+									'git checkout master',
+									'git reset --hard origin/master'];
+				let cmdCounter = 0;
+				let runExec = function(cc){
+					exec(cmd[cc], function(error, stdout, stderr) {
+						sails.log(stdout);
+						if(typeof cmd[cc + 1] != 'undefined'){
+							runExec(cc + 1);
+						}
+					});
+				}
+				runExec(cmdCounter);
 			}
 		}
+		res.json("update master");
 	},
 };
