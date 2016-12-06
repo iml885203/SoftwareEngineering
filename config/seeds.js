@@ -7,9 +7,6 @@
  * For more information on configuration, check out:
  * http://github.com/frostme/sails-seed
  */
-let ObjectID = require('mongodb').ObjectID;
-let userId = new ObjectID();
-console.log(`userid=${userId}`);
 
 module.exports.seeds = {
   user: {
@@ -21,7 +18,6 @@ module.exports.seeds = {
         permission: 'SuperAdmin',
       },
       {
-        _id: userId,
         account: 'user1',
         name: '攻城屍1',
         password: 'password',
