@@ -4,6 +4,8 @@
  * @description :: Server-side logic for managing issues
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
+ let moment = require("moment");
+ moment.locale('zh-tw');
 
 module.exports = {
 
@@ -16,13 +18,14 @@ module.exports = {
 
 			Issue.find(project.issues)
 			.populate('assignUser')
+			.populate('createUser')
 			.then((issues) => {
 				res.view('issue/index', {
 					project: project,
 					issues: issues,
 					pageTitle: project.name,
 					active: 'issueIndex',
-					moment: require("moment"),
+					moment: moment,
 				});
 			});
 		});

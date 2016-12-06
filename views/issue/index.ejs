@@ -19,7 +19,10 @@
           <tr>
             <td class="name">
               <%=issue.name%>
-              <h6># <%= moment(issue.createdAt).fromNow()%></h6>
+              <h6>
+                # <%= moment(issue.createdAt).fromNow()%>
+                創建於 <%=issue.createUser.name%>
+              </h6>
             </td>
             <td class="state"><%=issue.state%></td>
             <td class="priority">
