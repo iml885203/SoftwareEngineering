@@ -13,10 +13,17 @@ module.exports = {
 				handleErr.handleValidateError(req, err);
 				res.redirect(`/project/${req.params.id}`);
 			}
-			res.view('issue/index', {
-				project: project,
-				pageTitle: project.name,
-				active: 'issueIndex',
+
+			Issue.find(project.issues)
+			.populate('assignUser')
+			.then((issues) => {
+				res.view('issue/index', {
+					project: project,
+					issues: issues,
+					pageTitle: project.name,
+					active: 'issueIndex',
+					moment: require("moment"),
+				});
 			});
 		});
 	},
@@ -40,7 +47,14 @@ module.exports = {
 	},
 
 	store: function(req, res){
-
+		Issue.create(req.body)
+		.then( (newIssue) => {
+			res.redirect(`/project/${req.params.id}/issue`);
+		})
+		.catch( (err) => {
+			handleErr.handleValidateError(req, err);
+			res.redirect(`/project/${req.params.id}/issue/create`);
+		});
 	},
 
 	show: function(req, res){

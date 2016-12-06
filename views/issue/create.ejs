@@ -5,9 +5,17 @@
       action: `/project/${project.id}/issue/store`,
       method: 'POST',
       input: {
+        createUser:{
+          type: 'hidden',
+          value: req.session.passport.user,
+        },
         name:{
           title: '標題',
           type: 'text',
+        },
+        belongProject:{
+          type: 'hidden',
+          value: project.id,
         },
       }
     }
@@ -61,9 +69,11 @@
   <div class="form-group">
     <label class="col-md-4 control-label">指派給</label>
     <div class="col-md-8">
-      <select name="state" class="selectpicker">
+      <select name="assignUser" class="selectpicker">
         <option value="">請選擇</option>
-        <option value="asdf">攻城屍1號</option>
+        <% project.members.forEach(function(member){ %>
+          <option value="<%=member.id%>"><%=member.name%></option>
+        <% }) %>
       </select>
     </div>
   </div>

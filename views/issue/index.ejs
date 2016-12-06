@@ -15,7 +15,27 @@
         <th class="sort" data-sort="assignUser">指派</th>
       </thead>
       <tbody class="list">
-        <tr>
+        <% issues.forEach(function(issue){ %>
+          <tr>
+            <td class="name">
+              <%=issue.name%>
+              <h6># <%= moment(issue.createdAt).fromNow()%></h6>
+            </td>
+            <td class="state"><%=issue.state%></td>
+            <td class="priority">
+              <span class="label label-default"><%=issue.priority%></span>
+            </td>
+            <td class="tag">
+              <span class="label label-info"><%=issue.tag%></span>
+            </td>
+            <td class="assignUser">
+              <% if(typeof issue.assignUser != 'undefined'){ %>
+                <%=issue.assignUser.name%>
+              <% } %>
+            </td>
+          </tr>
+        <% }) %>
+        <!-- <tr>
           <td class="name">
             首頁跑版
             <h6># 11天前 創建於 攻城屍2號</h6>
@@ -154,7 +174,7 @@
             <span class="label label-danger">patch</span>
           </td>
           <td class="assignUser">攻城屍1號</td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
 

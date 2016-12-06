@@ -12,19 +12,35 @@ module.exports = {
       type: 'string',
       required: true,
     },
-    tag: {
-      type: 'string',
-    },
-    priorty: {
+    info:{
       type: 'string',
       required: true,
     },
+    state:{
+      type: 'string',
+      required: true,
+      defaultsTo: 'new',
+    },
+    priority: {
+      type: 'string',
+      required: true,
+    },
+    tag: {
+      type: 'string',
+    },
+
+    //User
     createUser: {
       model: 'user',
       required: true,
     },
     assignUser: {
       model: 'user',
+    },
+
+    //Project
+    belongProject: {
+      model: 'project',
       required: true,
     },
   }

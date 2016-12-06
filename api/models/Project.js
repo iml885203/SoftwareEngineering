@@ -26,6 +26,12 @@ module.exports = {
       via: 'joinProjects',
       dominant: true,
     },
+
+    //issue
+    issues: {
+      collection: 'issue',
+      via: 'belongProject',
+    },
   },
 
   validationMessages: {
@@ -42,6 +48,7 @@ module.exports = {
     Project.findOneById(id)
 		.populate('manager')
 		.populate('members')
+    .populate('issues')
 		.then( (project) => {
       if(!project){
         return callback(new Error('找不到此專案'), null);
