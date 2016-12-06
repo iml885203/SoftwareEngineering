@@ -40,9 +40,9 @@ module.exports.policies = {
     'myProject': 'isLogined',
   },
 
-  'admin/home': ['setAdminLayout'],
-  'admin/user': ['setAdminLayout'],
-  'admin/project': ['setAdminLayout'],
+  'admin/home': ['isLogined', 'setAdminLayout'],
+  'admin/user': ['isLogined', 'setAdminLayout'],
+  'admin/project': ['isLogined', 'setAdminLayout'],
 
   /***************************************************************************
   *                                                                          *

@@ -9,9 +9,6 @@ module.exports = {
 
   permission: [
     'SuperAdmin',
-    'UserAdmin',
-    'ProjectAdmin',
-    'IssueAdmin',
     'user',
   ],
 
