@@ -14,7 +14,7 @@ $(function(){
         outerWindow: 1,
       })]
     });
-
+    $(this).fadeIn();
     $('.sort').on('click', clickSort);
 
     function clickSort(){

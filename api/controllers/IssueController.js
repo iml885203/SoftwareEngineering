@@ -66,12 +66,23 @@ module.exports = {
 				handleErr.handleValidateError(req, err);
 				res.redirect(`/project/${req.params.id}`);
 			}
-			res.view('issue/show', {
-				project: project,
-				pageTitle: project.name,
-				active: 'issueIndex',
+
+			Issue.findOneById(req.params.issueId)
+			.populate('assignUser')
+			.populate('createUser')
+			.then((issue) => {
+				// return res.json(issue);
+				res.view('issue/show', {
+					project: project,
+					issue: issue,
+					pageTitle: project.name,
+					active: 'issueIndex',
+					moment: moment,
+				});
 			});
 		});
+
+
 	},
 
 

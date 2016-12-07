@@ -5,13 +5,16 @@
     <div class="row">
       <div class="col-md-10">
         <h4 class="inline">
-          首頁跑版
-          <span>(new)</span>
+          <%=issue.name%>
+          <span>(<%=issue.state%>)</span>
         </h4>
-        <span class="label label-default">normal</span>
-        <span class="label label-danger">BUG</span>
+        <span class="label label-default"><%=issue.priority%></span>
+        <span class="label label-danger"><%=issue.tag%></span>
         <br>
-        <h6 class="inline"># 11天前 創建於 攻城屍2號</h6>
+        <h6 class="inline">
+          # <%= moment(issue.createdAt).fromNow()%>
+          創建於 <%=issue.createUser.name%>
+        </h6>
       </div>
       <div class="col-md-1">
         <a href="#" class="btn btn-default">
@@ -25,11 +28,7 @@
     <!-- info -->
     <div class="row">
       <div class="col-md-offset-1">
-        首頁標題位置跑版<br>
-        首頁標題位置跑版<br>
-        首頁標題位置跑版<br>
-        首頁標題位置跑版<br>
-        首頁標題位置跑版<br>
+        <%-issue.info.replace(/\r\n/g, '<br/>')%>
       </div>
     </div>
     <hr>
@@ -38,7 +37,11 @@
     <div class="row">
       <div class="col-md-offset-1">
         <div>
-          指派：攻城屍3號
+          <% if(typeof issue.assignUser != 'undefined'){ %>
+            指派：<%=issue.assignUser.name%>
+          <% } else{ %>
+            尚未指派給任何人
+          <% } %>
         </div>
       </div>
     </div>
