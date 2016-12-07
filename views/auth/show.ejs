@@ -16,10 +16,10 @@
 
 
     <p>
-      註冊日期 <%=user.createdAt.toLocaleString()%>
+      註冊於 <%=moment(user.createdAt).format('YYYY/MM/DD A hh:mm:ss')%>
     </p>
     <p>
-      最後上線 <%=user.loginedAt.toLocaleString()%>
+      登入於 <%=moment(user.loginedAt).format('YYYY/MM/DD A hh:mm:ss')%>
     </p>
     <br>
     <div class="projects">

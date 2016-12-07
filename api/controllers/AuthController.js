@@ -6,6 +6,8 @@
  */
 
 var passport = require('passport');
+let moment = require("moment");
+moment.locale('zh-tw');
 
 module.exports = {
   //login page
@@ -56,6 +58,7 @@ module.exports = {
 			res.view('auth/show', {
 				user: user,
 				pageTitle: '個人資料',
+				moment: moment,
 			});
 		});
 	}

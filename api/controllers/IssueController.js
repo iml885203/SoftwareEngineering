@@ -4,8 +4,8 @@
  * @description :: Server-side logic for managing issues
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
- let moment = require("moment");
- moment.locale('zh-tw');
+let moment = require("moment");
+moment.locale('zh-tw');
 
 module.exports = {
 
