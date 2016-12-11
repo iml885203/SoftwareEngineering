@@ -9,9 +9,12 @@ module.exports = {
 
   attributes: {
     connection: 'someMongodbServer',
-    content: {
+    type: {
       type: 'string',
       required: true,
+    },
+    content: {
+      type: 'string',
     },
     workTime: {
       type: 'integer',
@@ -21,6 +24,15 @@ module.exports = {
     issue: {
       model: 'issue',
       required: true,
+    },
+
+    //User
+    createUser: {
+      model: 'user',
+      required: true,
+    },
+    targetUser: {
+      model: 'user',
     },
   }
 };

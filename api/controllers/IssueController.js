@@ -59,10 +59,12 @@ module.exports = {
 			if(!!req.body.assignUser){
 				User.findOneById(req.body.assignUser)
 				.then((user) => {
-					newIssue.logs.add({
-						content: `指派給 ${user.name}`,
+					Log.create({
+						type: 'assign',
+						issue: newIssue.id,
+						createUser: req.user.id,
+						targetUser: user.id,
 					});
-					newIssue.save();
 				});
 			}
 
@@ -106,30 +108,43 @@ module.exports = {
 			Object.keys(req.body).forEach((key)=>{
 				if(req.body[key] != issue[key]){
 					let setting = Attr.issueFieldName[key];
-
 					if(!!setting){
 						if(setting.showValue){
 							Log.create({
-								content: `${req.user.name} 更改 ${setting.name}為${req.body[key]}`,
+								type: 'change',
+								content: `更改 ${setting.name}為${req.body[key]}`,
 								issue: issue.id,
+								createUser: req.user.id,
+							})
+							.catch( (err) => {
+								handleErr.handleValidateError(req, err);
+								res.redirect(`/project/${req.params.id}/issue/${req.params.issueId}`);
 							});
 						}
 						else{
 							Log.create({
-								content: `${req.user.name} 更改了 ${setting.name}`,
+								type: 'change',
+								content: `更改了 ${setting.name}`,
 								issue: issue.id,
+								createUser: req.user.id,
+							})
+							.catch( (err) => {
+								handleErr.handleValidateError(req, err);
+								res.redirect(`/project/${req.params.id}/issue/${req.params.issueId}`);
 							});
 						}
 					}
 					else if(key === 'assignUser'){
-						User.findOneById(req.body[key])
-						.then((user) => {
-							sails.log(issue.id);
-							Log.create({
-								content: `指派給 ${user.name}`,
-								issue: issue.id,
-								workTime: (!!req.body.workTime) ? req.body.workTime : null,
-							});
+						Log.create({
+							type: 'assign',
+							issue: issue.id,
+							createUser: req.user.id,
+							targetUser: req.body[key],
+							workTime: (!!req.body.workTime)?req.body.workTime:null
+						})
+						.catch( (err) => {
+							handleErr.handleValidateError(req, err);
+							res.redirect(`/project/${req.params.id}/issue/${req.params.issueId}`);
 						});
 					}
 
@@ -159,7 +174,7 @@ module.exports = {
 			.populate('logs')
 			.populate('comments')
 			.then((issue) => {
-				// return res.json(issue);
+				return res.json(issue);
 				res.view('issue/show', {
 					project: project,
 					issue: issue,

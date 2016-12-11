@@ -51,6 +51,16 @@ module.exports = {
       collection: 'issue',
       via: 'assignUser',
     },
+
+    //log
+    createLog: {
+      collection: 'log',
+      via: 'createUser',
+    },
+    targetLog: {
+      collection: 'log',
+      via: 'targetUser',
+    },
   },
 
   validationMessages: {

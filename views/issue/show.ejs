@@ -55,7 +55,11 @@
             <div class="col-md-offset-1">
               <h6>
                 # <%=moment(log.createdAt).fromNow()%>
-                <%=log.content%>
+                <% if(log.type === 'assign'){ %>
+                  指派給 <%=log.targetUser%>
+                <% }else if(log.type === 'change'){ %>
+                  <%=log.createUser%> <%=log.content%>
+                <% } %>
                 <%=(!!log.workTime) ? `花費了 ${log.workTime}小時` : ''%>
               </h6>
             </div>
