@@ -50,7 +50,41 @@
     <!-- old comment -->
     <div class="row">
       <div class="col-md-12">
-        <div class="row">
+        <% issue.logs.forEach(function(log){ %>
+          <div class="row">
+            <div class="col-md-offset-1">
+              <h6>
+                # <%=moment(log.createdAt).fromNow()%>
+                <%=log.content%>
+                <%=(!!log.workTime) ? `花費了 ${log.workTime}小時` : ''%>
+              </h6>
+            </div>
+            <br>
+          </div>
+        <% }); %>
+
+        <% issue.comments.forEach(function(comment){ %>
+          <div class="row">
+            <div class="col-md-1 authShow authShow-sm">
+              <div class="inline-block title">
+                <div class="image">
+                  <div>
+                    <%=comment.userName.charAt(0)%>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-11">
+              <h5 class="inline"><%=comment.userName%></h5>
+              <h6 class="inline">@ <%=moment(comment.createdAt).fromNow()%> 留言</h6>
+              <div>
+                <%=comment.content%>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+
+        <!-- <div class="row">
           <div class="col-md-offset-1">
             <h6># 11天前 指派給 攻城屍1號</h6>
           </div>
@@ -90,7 +124,7 @@
             <h6># 5天前 指派給 攻城屍1號</h6>
           </div>
           <br>
-        </div>
+        </div> -->
 
 
       </div>
@@ -98,29 +132,32 @@
     </div>
 
     <!-- comment -->
-    <div class="row">
-      <div class="panel panel-default panel-bg-dark">
-        <div class="panel-body">
-          <div class="col-md-1 authShow authShow-sm">
-            <div class="inline-block title">
-              <div class="image">
-                <div>
-                  攻
+    <form action="<%=`/project/${project.id}/issue/${issue.id}/addComment`%>" method="POST">
+      <div class="row">
+        <div class="panel panel-default panel-bg-dark">
+          <div class="panel-body">
+            <div class="col-md-1 authShow authShow-sm">
+              <div class="inline-block title">
+                <div class="image">
+                  <div>
+                    <%=session.passport.username.charAt(0)%>
+                    <input type="hidden" name="userName" value="<%=session.passport.username%>">
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-11">
-            <div class="form-group">
-              <textarea name="info" cols="30" rows="5" class="form-control"></textarea>
-            </div>
-            <div class="form-group">
-              <input type="submit" class="btn btn-success" value="留言">
+            <div class="col-md-11">
+              <div class="form-group">
+                <textarea name="content" cols="30" rows="5" class="form-control"></textarea>
+              </div>
+              <div class="form-group">
+                <input type="submit" class="btn btn-success" value="留言">
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </form>
   </div>
 
 </div>

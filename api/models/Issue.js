@@ -43,5 +43,16 @@ module.exports = {
       model: 'project',
       required: true,
     },
+
+    //log
+    logs: {
+      collection: 'log',
+      via: 'issue',
+    },
+    //comment
+    comments: {
+      collection: 'comment',
+      via: 'issue',
+    },
   }
 };

@@ -42,6 +42,8 @@ module.exports.policies = {
 
   'issue': {
     'create': 'isLogined',
+    'show': 'isLogined',
+    'addComment': 'isLogined',
   },
 
   'admin/home': ['isLogined', 'setAdminLayout'],
