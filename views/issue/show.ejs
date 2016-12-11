@@ -50,42 +50,42 @@
     <!-- old comment -->
     <div class="row">
       <div class="col-md-12">
-        <% issue.logs.forEach(function(log){ %>
-          <div class="row">
-            <div class="col-md-offset-1">
-              <h6>
-                # <%=moment(log.createdAt).fromNow()%>
-                <% if(log.type === 'assign'){ %>
-                  指派給 <%=log.targetUser%>
-                <% }else if(log.type === 'change'){ %>
-                  <%=log.createUser%> <%=log.content%>
-                <% } %>
-                <%=(!!log.workTime) ? `花費了 ${log.workTime}小時` : ''%>
-              </h6>
-            </div>
-            <br>
-          </div>
-        <% }); %>
-
-        <% issue.comments.forEach(function(comment){ %>
-          <div class="row">
-            <div class="col-md-1 authShow authShow-sm">
-              <div class="inline-block title">
-                <div class="image">
-                  <div>
-                    <%=comment.userName.charAt(0)%>
+        <% logs.forEach(function(log){ %>
+          <% if(log.type === 'comment'){ %>
+            <div class="row">
+              <div class="col-md-1 authShow authShow-sm">
+                <div class="inline-block title">
+                  <div class="image">
+                    <div>
+                      <%=log.createUser.name.charAt(0)%>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-md-11">
-              <h5 class="inline"><%=comment.userName%></h5>
-              <h6 class="inline">@ <%=moment(comment.createdAt).fromNow()%> 留言</h6>
-              <div>
-                <%=comment.content%>
+              <div class="col-md-11">
+                <h5 class="inline"><%=log.createUser.name%></h5>
+                <h6 class="inline">@ <%=moment(log.createdAt).fromNow()%> 留言</h6>
+                <div>
+                  <%-log.content.replace(/\r\n/g, '<br/>')%>
+                </div>
               </div>
             </div>
-          </div>
+          <% }else { %>
+            <div class="row">
+              <div class="col-md-offset-1">
+                <h6>
+                  # <%=moment(log.createdAt).fromNow()%>
+                  <% if(log.type === 'assign'){ %>
+                    指派給 <%=log.targetUser.name%>
+                  <% }else if(log.type === 'change'){ %>
+                    <%=log.createUser.name%> <%=log.content%>
+                  <% } %>
+                  <%=(!!log.workTime) ? `花費了 ${log.workTime}小時` : ''%>
+                </h6>
+              </div>
+              <br>
+            </div>
+          <% } %>
         <% }); %>
 
         <!-- <div class="row">
@@ -145,7 +145,6 @@
                 <div class="image">
                   <div>
                     <%=session.passport.username.charAt(0)%>
-                    <input type="hidden" name="userName" value="<%=session.passport.username%>">
                   </div>
                 </div>
               </div>

@@ -64,6 +64,9 @@ module.exports = {
 						issue: newIssue.id,
 						createUser: req.user.id,
 						targetUser: user.id,
+					}).catch( (err) => {
+						handleErr.handleValidateError(req, err);
+						res.redirect(`/project/${req.params.id}/issue/${req.params.issueId}`);
 					});
 				});
 			}
@@ -171,27 +174,35 @@ module.exports = {
 			Issue.findOneById(req.params.issueId)
 			.populate('assignUser')
 			.populate('createUser')
-			.populate('logs')
-			.populate('comments')
 			.then((issue) => {
-				return res.json(issue);
-				res.view('issue/show', {
-					project: project,
-					issue: issue,
-					pageTitle: project.name,
-					active: 'issueIndex',
-					moment: moment,
-				});
+				Log.find({
+					issue: req.params.issueId
+				})
+				.populate('createUser')
+				.populate('targetUser')
+				.then((logs) => {
+					res.view('issue/show', {
+						project: project,
+						issue: issue,
+						logs: logs,
+						pageTitle: project.name,
+						active: 'issueIndex',
+						moment: moment,
+					});
+				})
 			});
 		});
 	},
 
 	addComment: function(req, res){
-		Issue.findOneById(req.params.issueId)
-		.then((issue) => {
-			issue.comments.add(req.body);
-			issue.save();
-		 	res.redirect(`/project/${req.params.id}/issue/${req.params.issueId}`);
+		Log.create({
+			type: 'comment',
+			content: req.body.content,
+			issue: req.params.issueId,
+			createUser: req.user.id,
+		})
+		.then(()=>{
+			res.redirect(`/project/${req.params.id}/issue/${req.params.issueId}`);
 		})
 		.catch( (err) => {
 			handleErr.handleValidateError(req, err);

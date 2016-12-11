@@ -49,10 +49,5 @@ module.exports = {
       collection: 'log',
       via: 'issue',
     },
-    //comment
-    comments: {
-      collection: 'comment',
-      via: 'issue',
-    },
   },
 };
