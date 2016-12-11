@@ -54,5 +54,5 @@ module.exports = {
       collection: 'comment',
       via: 'issue',
     },
-  }
+  },
 };

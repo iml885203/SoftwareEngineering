@@ -1,0 +1,88 @@
+<div class="row">
+  <% include ../project/partials/navbar %>
+  <%
+    var form = {
+      action: `/project/${project.id}/issue/${issue.id}/update`,
+      method: 'POST',
+      input: {
+        name:{
+          title: '標題',
+          type: 'text',
+          value: issue.name
+        },
+      }
+    }
+  %>
+  <% include ../partials/FormOpen.ejs %>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">描述</label>
+    <div class="col-md-8">
+      <textarea name="info" cols="30" rows="10" class="form-control"><%=issue.info%></textarea>
+    </div>
+  </div>
+
+  <hr class="col-md-offset-3">
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">狀態</label>
+    <div class="col-md-8">
+      <select name="state" class="selectpicker">
+        <option value="">請選擇</option>
+        <% states.forEach((state) => { %>
+          <option value="<%=state%>" <%=(state === issue.state) ? 'selected' : ''%>><%=state%></option>
+        <% }) %>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">重要性</label>
+    <div class="col-md-8">
+      <select name="priority" class="selectpicker">
+        <option value="">請選擇</option>
+        <% priorities.forEach((priority) => { %>
+          <option value="<%=priority%>" <%=(priority === issue.priority) ? 'selected' : ''%>><%=priority%></option>
+        <% }) %>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">標籤</label>
+    <div class="col-md-8">
+      <select name="tag" class="selectpicker">
+        <option value="">請選擇</option>
+        <% tags.forEach((tag) => { %>
+          <option value="<%=tag%>" <%=(tag === issue.tag) ? 'selected' : ''%>><%=tag%></option>
+        <% }) %>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">指派給</label>
+    <div class="col-md-8">
+      <select name="assignUser" class="selectpicker">
+        <option value="">請選擇</option>
+        <% project.members.forEach(function(member){ %>
+          <option value="<%=member.id%>" <%=(member.id === issue.assignUser.id) ? 'selected' : ''%>><%=member.name%></option>
+        <% }) %>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-4 control-label">花費時數(小時)</label>
+    <div class="col-md-2">
+      <input type="text" name="workTime" class="form-control">
+    </div>
+  </div>
+
+  <%
+    var form = {
+      submit: '送出',
+    }
+  %>
+  <% include ../partials/FormClose.ejs %>
+</div>

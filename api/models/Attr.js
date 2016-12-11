@@ -31,4 +31,27 @@ module.exports = {
     'feature',
     'patch',
   ],
+
+  issueFieldName: {
+    'name': {
+      'name': '標題',
+      'showValue': false,
+    },
+    'info': {
+      'name': '描述',
+      'showValue': false,
+    },
+    'state': {
+      'name': '狀態',
+      'showValue': true,
+    },
+    'priority': {
+      'name': '重要性',
+      'showValue': true,
+    },
+    'tag': {
+      'name': '標籤',
+      'showValue': true,
+    },
+  }
 };

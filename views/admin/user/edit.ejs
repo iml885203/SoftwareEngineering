@@ -25,9 +25,9 @@
 <div class="form-group">
   <label class="col-md-2 control-label">權限</label>
   <div class="col-md-10">
-    <select name="permission" class="selectpicker" value="<%=user.permission%>">
+    <select name="permission" class="selectpicker">
       <% permissions.forEach((permission) => { %>
-        <option value="<%=permission%>" "<%=(permission === user.permission) ? 'selected' : ''%>"><%=permission%></option>
+        <option value="<%=permission%>" <%=(permission === user.permission) ? 'selected' : ''%>><%=permission%></option>
       <% }) %>
     </select>
   </div>
