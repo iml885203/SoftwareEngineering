@@ -5,7 +5,7 @@
     </h1>
     <div>
       <% if(typeof req.session.passport == 'undefined' || typeof req.session.passport.user == 'undefined'){ %>
-        <a href="#">註冊</a>
+        <a href="/home/signup">註冊</a>
         <a href="/auth/login">登入</a>
       <% } else { %>
         <div class="logined">

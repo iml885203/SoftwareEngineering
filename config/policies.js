@@ -27,6 +27,12 @@ module.exports.policies = {
   ***************************************************************************/
 
   '*': true,//全部controller設為需登入才能存取
+  'home': {
+    '*': true,
+    'signup': 'isNotLogined',//登入後無法到此頁面
+    'store': 'isNotLogined',//登入後無法到此頁面
+    'verify': 'isNotLogined',//登入後無法到此頁面  
+  },
 
   'auth': {
     '*': true,

@@ -33,7 +33,9 @@ module.exports.routes = {
   ***************************************************************************/
 
   'GET /': 'home.index',
-
+  'GET /home/signup': 'home.signup',
+  'POST /home/signup': 'home.store',
+  'GET /home/verify/:account/:verifycode': 'home.verify',
   //Auth
   'GET /auth/login': 'Auth.index',
   'POST /auth/login': 'Auth.login',

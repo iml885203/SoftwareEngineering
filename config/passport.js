@@ -23,7 +23,9 @@ passport.use(new LocalStrategy({
       if (!user) {
         return done(null, false, { message: '找不到使用者' });
       }
-
+      if (!user.isVerified) {
+        return done(null, false, { message: '使用者尚未通過驗證' });
+      }
       bcrypt.compare(password, user.password, function (err, res) {
           if (!res){
             return done(null, false, { message: '密碼輸入錯誤' });

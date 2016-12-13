@@ -31,6 +31,13 @@ module.exports = {
       this.save();
       return;
     },
+    email: {
+      type: 'string',
+      required: true,
+    },
+    isVerified:{
+      type: 'boolean',      
+    },
 
     //project
     manageProjects: {
@@ -73,6 +80,9 @@ module.exports = {
     },
     password: {
       required: 'password 必須輸入'
+    },
+    email: {
+      required: 'email 必須輸入'
     },
   },
 
