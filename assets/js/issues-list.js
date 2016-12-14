@@ -8,7 +8,7 @@ $(function(){
         'tag',
         'assignUser',
       ],
-      page: 5,
+      page: 10,
       plugins: [ ListPagination({
         innerWindow: 2,
         outerWindow: 1,

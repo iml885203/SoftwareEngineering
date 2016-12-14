@@ -21,6 +21,7 @@ module.exports = {
 			})
 			.populate('assignUser')
 			.populate('createUser')
+			.sort('createdAt DESC')
 			.then((issues) => {
 				res.view('issue/index', {
 					project: project,
