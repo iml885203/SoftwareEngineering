@@ -11,6 +11,7 @@
         <th>暱稱</th>
         <th>權限</th>
         <th>創建日期</th>
+        <th>驗證</th>
         <th>功能</th>
       </thead>
       <tbody>
@@ -21,6 +22,15 @@
               <td><%=user.name%></td>
               <td><%=user.permission%></td>
               <td><%=user.createdAt.toLocaleString()%></td>
+              <td>
+                <% if(user.permission === 'user') { %>
+                  <% if(!!user.isVerified) { %>
+                    <a href="/admin/user/verify/<%=user.id%>?isVerified=false" class="glyphicon glyphicon-ok"></a>
+                  <%} else {%>
+                    <a href="/admin/user/verify/<%=user.id%>?isVerified=true" class="glyphicon glyphicon-remove"></a>
+                  <%}%>
+                <%}%>
+              </td>
               <td>
                 <a href="/admin/user/edit/<%=user.id%>" class="glyphicon glyphicon-edit"></a>
                 <form action="/admin/user/delete/<%=user.id%>" class="inline-block">

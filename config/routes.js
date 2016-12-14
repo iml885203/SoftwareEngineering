@@ -69,6 +69,7 @@ module.exports.routes = {
   'GET /admin/user/edit/:id': 'admin/User.edit',
   'UPDATE /admin/user/edit/:id': 'admin/User.update',
   'DELETE /admin/user/delete/:id': 'admin/User.delete',
+  'DELETE /admin/user/verify/:id': 'admin/User.verify',
 
   //Project
   'GET /admin/project': 'admin/Project.index',
