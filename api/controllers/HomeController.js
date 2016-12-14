@@ -19,7 +19,8 @@ module.exports = {
 		req.body.isVerified = (!!req.body.isVerified) ? req.body.isVerified : 'false';
 		User.create(req.body)
 		.then( () => {
-			MailService.sendEmail(req.body);
+			var mailcontent = MailService.createMailContent.verify(req.body);
+			MailService.sendEmail(mailcontent);
 			res.redirect('/auth/login');
 		})
 		.catch( (err) => {

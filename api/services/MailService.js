@@ -22,10 +22,9 @@
 
 
 module.exports = {
-  sendEmail: function(UserContent) {
-    var options = this.createMailContent(UserContent);
-    sails.log(options);
-    transporter.sendMail(options, function(error, info){
+  //寄mail
+  sendEmail: function(content) {
+    transporter.sendMail(content, function(error, info){
       if(error){
           console.log(error);
       }else{
@@ -35,19 +34,39 @@ module.exports = {
   },
 
   //產生信件內容
-  createMailContent: function(UserContent){
-    var options = {
-      //寄件者
-      from: 'ntutcsieits@gmail.com',
-      //收件者
-      to: UserContent.email,
-      //主旨
-      subject: 'ITS 帳號驗證信', // Subject line
-      //嵌入 html 的內文
-      html: '<h2>請點選以下網址進行帳號驗證</h2> <p><a href="' + this.verifyhref(UserContent.account) +'">請點我</a> </p>',
-
-    };
-    return options;
+  createMailContent: {
+    //***
+    //驗證信
+    //***
+    verify: function(UserContent){
+      var options = {
+        //寄件者
+        from: 'ntutcsieits@gmail.com',
+        //收件者
+        to: UserContent.email,
+        //主旨
+        subject: 'ITS 帳號驗證信', // Subject line
+        //嵌入 html 的內文
+        html: '<h2>請點選以下網址進行帳號驗證</h2> <p><a href="' + MailService.verifyhref(UserContent.account) +'">請點我</a> </p>',
+      };
+      return options;
+    },
+    //***
+    //新增Issue時，要通知PM
+    //***
+    newIssue: function(issue,manager){
+      var options = {
+        //寄件者
+        from: 'ntutcsieits@gmail.com',
+        //收件者
+        to: manager.email,
+        //主旨
+        subject: 'Issue新增通知', // Subject line
+        //嵌入 html 的內文
+        html: `<h2>請點選以下網址查看</h2> <p><a href="http://youare87.ddns.net/project/${issue.belongProject.id}/issue/${issue.id}">請點我</a> </p>`,
+      };
+      return options;
+    },
   },
 
   verifyhref: function(account){

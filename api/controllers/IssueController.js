@@ -56,8 +56,7 @@ module.exports = {
 	store: function(req, res){
 
 		Issue.create(req.body)
-		.then( (newIssue) => {
-
+		.then( (newIssue) => {				
 			if(!!req.body.assignUser){
 				User.findOneById(req.body.assignUser)
 				.then((user) => {
@@ -72,7 +71,19 @@ module.exports = {
 					});
 				});
 			}
-
+			//***新增Issue時，發信給PM***
+			Issue.findOneById(newIssue.id)
+  		.populate('belongProject')
+  		.then( (issue) => {
+        sails.log(issue);
+          User.findOne({id:issue.belongProject.manager})
+          .then( (manager) => {
+              sails.log(manager);
+							var mailcontent = MailService.createMailContent.newIssue(issue,manager);
+							MailService.sendEmail(mailcontent);
+      		});
+  		});
+			//***新增Issue時，發信給PM***
 			res.redirect(`/project/${req.params.id}/issue`);
 		})
 		.catch( (err) => {
