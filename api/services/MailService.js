@@ -51,7 +51,7 @@ module.exports = {
   },
 
   verifyhref: function(account){
-    var href = 'http://localhost:1337/home/verify/' + account + '/';
+    var href = 'http://youare87.ddns.net/home/verify/' + account + '/';
     var verifycode = bcrypt.hashSync(account, bcrypt.genSaltSync(10));
     return href + verifycode;
   },
