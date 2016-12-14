@@ -53,5 +53,19 @@ module.exports = {
       'name': '標籤',
       'showValue': true,
     },
+  },
+
+  labelType: {
+    'normal' : 'default',
+    'important' : 'warning',
+    'critical' : 'danger',
+    'BUG' : 'danger',
+    'feature' : 'info',
+    'patch' : 'success',
+    'new' : 'primary',
+    'assigned' : 'primary',
+    'solved' : 'success',
+    'end' : 'warning',
+    'sleep' : 'default',
   }
 };

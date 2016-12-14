@@ -28,6 +28,7 @@ module.exports = {
 					pageTitle: project.name,
 					active: 'issueIndex',
 					moment: moment,
+					labelType: Attr.labelType,
 				});
 			});
 		});
@@ -188,6 +189,7 @@ module.exports = {
 						pageTitle: project.name,
 						active: 'issueIndex',
 						moment: moment,
+						labelType: Attr.labelType,
 					});
 				})
 			});
