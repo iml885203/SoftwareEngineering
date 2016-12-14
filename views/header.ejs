@@ -14,9 +14,12 @@
         <li>
           <a href="<%=sails.getUrlFor('Project.myProject')%>">我參與的專案</a>
         </li>
-        <li>
-          <a href="<%=sails.getUrlFor('admin/home.index')%>">後台管理</a>
-        </li>
+        <% if(!!req.user && req.user.permission === 'SuperAdmin'){ %>
+          <li>
+            <a href="<%=sails.getUrlFor('admin/home.index')%>">後台管理</a>
+          </li>
+        <% } %>
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>

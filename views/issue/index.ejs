@@ -24,12 +24,14 @@
                 創建於 <%=issue.createUser.name%>
               </h6>
             </td>
-            <td class="state"><%=issue.state%></td>
+            <td class="state">
+              <span class="label label-<%=labelType[issue.state]%>"><%=issue.state%></span>
+            </td>
             <td class="priority">
-              <span class="label label-default"><%=issue.priority%></span>
+              <span class="label label-<%=labelType[issue.priority]%>"><%=issue.priority%></span>
             </td>
             <td class="tag">
-              <span class="label label-info"><%=issue.tag%></span>
+              <span class="label label-<%=labelType[issue.tag]%>"><%=issue.tag%></span>
             </td>
             <td class="assignUser">
               <% if(typeof issue.assignUser != 'undefined'){ %>

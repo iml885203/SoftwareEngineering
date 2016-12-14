@@ -79,5 +79,16 @@ module.exports = {
 			res.redirect('/admin/user');
 		})
 		.catch( err => res.serverError(err));
-	}
+	},
+
+  //驗證
+	verify: function(req, res){
+		User.update({
+			id: req.params.id,
+		}, req.query)
+		.then( () => {
+			res.redirect('/admin/user');
+		})
+		.catch( err => res.serverError(err));
+	},
 };

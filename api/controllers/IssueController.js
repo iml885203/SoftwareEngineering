@@ -21,6 +21,7 @@ module.exports = {
 			})
 			.populate('assignUser')
 			.populate('createUser')
+			.sort('createdAt DESC')
 			.then((issues) => {
 				res.view('issue/index', {
 					project: project,
@@ -28,6 +29,7 @@ module.exports = {
 					pageTitle: project.name,
 					active: 'issueIndex',
 					moment: moment,
+					labelType: Attr.labelType,
 				});
 			});
 		});
@@ -188,6 +190,7 @@ module.exports = {
 						pageTitle: project.name,
 						active: 'issueIndex',
 						moment: moment,
+						labelType: Attr.labelType,
 					});
 				})
 			});

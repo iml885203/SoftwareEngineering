@@ -23,8 +23,8 @@ passport.use(new LocalStrategy({
       if (!user) {
         return done(null, false, { message: '找不到使用者' });
       }
-      if (!user.isVerified) {
-        return done(null, false, { message: '使用者尚未通過驗證' });
+      if (!user.isVerified && user.permission === 'user') {
+        return done(null, false, { message: '尚未通過驗證，請去信箱點選驗證信' });
       }
       bcrypt.compare(password, user.password, function (err, res) {
           if (!res){
