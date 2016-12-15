@@ -35,9 +35,7 @@ module.exports = {
 
   //產生信件內容
   createMailContent: {
-    //***
     //驗證信
-    //***
     verify: function(UserContent){
       var options = {
         //寄件者
@@ -51,9 +49,8 @@ module.exports = {
       };
       return options;
     },
-    //***
+
     //新增Issue時，要通知PM
-    //***
     newIssue: function(issue,manager){
       var options = {
         //寄件者
@@ -63,7 +60,45 @@ module.exports = {
         //主旨
         subject: 'Issue新增通知', // Subject line
         //嵌入 html 的內文
-        html: `<h2>請點選以下網址查看</h2> <p><a href="http://youare87.ddns.net/project/${issue.belongProject.id}/issue/${issue.id}">請點我</a> </p>`,
+        html: `<h2>你所管理的Project 「${issue.belongProject.name}」 已新增了一筆Issue</h2>`
+              + `<h3>請點選以下網址查看</h3>`
+              + `<p><a href="http://youare87.ddns.net/project/${issue.belongProject.id}/issue/${issue.id}">請點我</a> </p>`,
+      };
+      return options;
+    },
+
+    //Issue solved時，發信給PM
+    solveIssue: function(issue,manager){
+      var options = {
+        //寄件者
+        from: 'ntutcsieits@gmail.com',
+        //收件者
+        to: manager.email,
+        //主旨
+        subject: 'Issue solved通知', // Subject line
+        //嵌入 html 的內文
+        html: `<h2>你所管理的Project 「${issue.belongProject.name}」 </h2>`
+              + `<h2>Issue 「${issue.name}」 已解決</h2>`
+              + `<h3>請點選以下網址查看</h3>`
+              + `<p><a href="http://youare87.ddns.net/project/${issue.belongProject.id}/issue/${issue.id}">請點我</a> </p>`,
+      };
+      return options;
+    },
+
+    //Issue 更改assignUser時，發信通知assignUser
+    assignToYou: function(issue,you,assignUser){
+      var options = {
+        //寄件者
+        from: 'ntutcsieits@gmail.com',
+        //收件者
+        to: assignUser.email,
+        //主旨
+        subject: '你被指派了一個Issue', // Subject line
+        //嵌入 html 的內文
+        html: `<h2>你被 ${you.name} 指派了一個Issue「${issue.name}」 </h2>`
+              + `<h2>在你所參與的Project 「${issue.belongProject.name}」 </h2>`
+              + `<h3>請點選以下網址查看</h3>`
+              + `<p><a href="http://youare87.ddns.net/project/${issue.belongProject.id}/issue/${issue.id}">請點我</a> </p>`,
       };
       return options;
     },

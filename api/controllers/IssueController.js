@@ -56,7 +56,7 @@ module.exports = {
 	store: function(req, res){
 
 		Issue.create(req.body)
-		.then( (newIssue) => {				
+		.then( (newIssue) => {
 			if(!!req.body.assignUser){
 				User.findOneById(req.body.assignUser)
 				.then((user) => {
@@ -78,7 +78,6 @@ module.exports = {
         sails.log(issue);
           User.findOne({id:issue.belongProject.manager})
           .then( (manager) => {
-              sails.log(manager);
 							var mailcontent = MailService.createMailContent.newIssue(issue,manager);
 							MailService.sendEmail(mailcontent);
       		});
@@ -120,6 +119,8 @@ module.exports = {
 	update: function(req, res){
 		sails.log('update issue');
 		Issue.findOneById(req.params.issueId)
+		.populate('belongProject')
+		.populate('assignUser')
 		.then((issue) => {
 			Object.keys(req.body).forEach((key)=>{
 				if(req.body[key] != issue[key]){
@@ -162,7 +163,28 @@ module.exports = {
 							handleErr.handleValidateError(req, err);
 							res.redirect(`/project/${req.params.id}/issue/${req.params.issueId}`);
 						});
+						//***Issue 更改assignUser時，發信通知assignUser***
+						User.findOneById(req.session.passport.user)
+						.populate('manageProjects')
+						.populate('joinProjects')
+						.then( (you) => {
+							User.findOne({id:issue.assignUser})
+							.then( (assignUser) => {
+								var mailcontent = MailService.createMailContent.assignToYou(issue,you,assignUser);
+								MailService.sendEmail(mailcontent);
+							});
+						});						
+					  //***Issue 更改assignUser時，發信通知assignUser***
 					}
+					//***Issue close時，發信給PM***
+					if(key === 'state' && req.body[key] === 'solved'){
+						User.findOne({id:issue.belongProject.manager})
+						.then( (manager) => {
+								var mailcontent = MailService.createMailContent.solveIssue(issue,manager);
+								MailService.sendEmail(mailcontent);
+						});
+					}
+				  //***Issue close時，發信給PM***
 
 					issue[key] = req.body[key];
 					issue.save();
