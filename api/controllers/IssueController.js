@@ -151,7 +151,7 @@ module.exports = {
 							});
 						}
 					}
-					else if(key === 'assignUser'){
+					else if(!!req.body[key] && key === 'assignUser'){
 						Log.create({
 							type: 'assign',
 							issue: issue.id,
