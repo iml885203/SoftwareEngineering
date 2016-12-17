@@ -6,6 +6,7 @@
  */
 let moment = require("moment");
 moment.locale('zh-tw');
+var md = require("node-markdown").Markdown;
 
 module.exports = {
 
@@ -173,7 +174,7 @@ module.exports = {
 								var mailcontent = MailService.createMailContent.assignToYou(issue,you,assignUser);
 								MailService.sendEmail(mailcontent);
 							});
-						});						
+						});
 					  //***Issue 更改assignUser時，發信通知assignUser***
 					}
 					//***Issue close時，發信給PM***
@@ -224,6 +225,7 @@ module.exports = {
 						active: 'issueIndex',
 						moment: moment,
 						labelType: Attr.labelType,
+						md: md
 					});
 				})
 			});

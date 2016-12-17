@@ -28,7 +28,9 @@
     <!-- info -->
     <div class="row">
       <div class="col-md-offset-1">
-        <%-issue.info.replace(/\r\n/g, '<br/>')%>
+        <!-- <%-issue.info.replace(/\r\n/g, '<br/>')%>         -->
+        <%var issuehtml = md(issue.info.replace(/\r\n/g, '<br/>'));%>
+        <%-issuehtml%>
       </div>
     </div>
     <hr>
@@ -66,7 +68,9 @@
                 <h5 class="inline"><%=log.createUser.name%></h5>
                 <h6 class="inline">@ <%=moment(log.createdAt).fromNow()%> 留言</h6>
                 <div>
-                  <%-log.content.replace(/\r\n/g, '<br/>')%>
+                  <%var loghtml = md(log.content,true);%>
+                  <%-loghtml%>
+                  <!-- <%-log.content.replace(/\r\n/g, '<br/>')%> -->
                 </div>
               </div>
             </div>
