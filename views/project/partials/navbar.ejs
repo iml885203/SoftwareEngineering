@@ -10,6 +10,11 @@
     <li class="<%=(active === 'issueCreate')?'active':''%>">
       <a href="/project/<%=project.id%>/issue/create">新增問題</a>
     </li>
+    <% if(!!req.user && project.manager.id === req.user.id){ %>
+      <li class="<%=(active === 'projectEdit')?'active':''%>">
+        <a href="/project/<%=project.id%>/edit">編輯專案</a>
+      </li>
+    <% } %>
   </ul>
   <br>
 </div>

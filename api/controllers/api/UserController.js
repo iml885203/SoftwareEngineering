@@ -14,12 +14,26 @@ module.exports = {
         'name',
       ],
       where: {
-        id: {'!': req.session.passport.user},
+        id: {'!': req.user.id},
 				permission: 'user'
       }
     });
     users.then(function(users){
-			res.json({users: users});
+			if(!!req.query.projectId){
+				Project.getById(req.query.projectId, function(err, project){
+					if(err){
+						handleErr.handleValidateError(req, err);
+						return res.status(404).end();
+					}
+					return res.json({
+						users: users,
+						projectMembers: project.members,
+					});
+				})
+			}
+			else{
+				return res.json({users: users});
+			}
 		});
 	},
 };

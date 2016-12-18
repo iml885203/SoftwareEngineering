@@ -3,7 +3,7 @@ $(function(){
     let $searchInput = $('.search', this);
     let $memberList = $('.list', this);
     let $selectedMemberList = $('.selected-list', this);
-    let getData = $.get('/api/user/getMemberList');
+    let getData = $.get($(this).data('endpoint'));
 
     // setting list.js data
     getData.then((data) => {
@@ -12,9 +12,21 @@ $(function(){
         item: '<li class="js-select-members-trigger"><span class="name"></span><span class="account badge"></span><input type="hidden" class="id"/></li>',
       };
       let values = data.users;
+      let projectMembers = data.projectMembers;
+      let projectMembersIds = [];
+      data.projectMembers.forEach(function(member){
+        projectMembersIds.push(member.id);
+      });
+      console.log(projectMembersIds);
       let hackerList = new List('hacker-list', options, values);
       $('.js-select-members-trigger').unbind("click");
       $('.js-select-members-trigger').click(selectMember);
+      $('.js-select-members-trigger').each(function() {
+        let $id = $('.id', this);
+        if(projectMembersIds.indexOf($id.text()) != -1){
+          $(this).trigger('click');
+        }
+      });
 
       function selectMember() {
         let $member = $('.id', this);

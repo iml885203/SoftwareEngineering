@@ -1,21 +1,18 @@
 
 <%
   var form = {
-    action: '/project/create',
+    action: `/project/${project.id}/update`,
     method: 'POST',
     input: {
       showManager:{
         title: '專案管理員',
         type: 'text',
-        value: req.session.passport.username,
+        value: project.manager.name,
         disabled: 'disabled',
-      },
-      manager:{
-        type: 'hidden',
-        value: req.session.passport.user,
       },
       name: {
         title: '名稱',
+        value: project.name
       },
     },
   }
@@ -24,7 +21,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label">成員</label>
   <div class="col-md-8">
-    <div class="js-select-members" data-endpoint="/api/user/getMemberList">
+    <div class="js-select-members" data-endpoint="/api/user/getMemberList/?projectId=<%=project.id%>">
       <div id="hacker-list">
         <ul class="selected-list"></ul>
         <input class="search form-control" />
@@ -37,7 +34,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label">專案描述</label>
   <div class="col-md-8">
-    <textarea name="info" cols="30" rows="10" class="form-control"></textarea>
+    <textarea name="info" cols="30" rows="10" class="form-control"><%=project.info%></textarea>
   </div>
 </div>
 
