@@ -14,19 +14,22 @@ $(function(){
       let values = data.users;
       let projectMembers = data.projectMembers;
       let projectMembersIds = [];
-      data.projectMembers.forEach(function(member){
-        projectMembersIds.push(member.id);
-      });
-      console.log(projectMembersIds);
+
       let hackerList = new List('hacker-list', options, values);
       $('.js-select-members-trigger').unbind("click");
       $('.js-select-members-trigger').click(selectMember);
-      $('.js-select-members-trigger').each(function() {
-        let $id = $('.id', this);
-        if(projectMembersIds.indexOf($id.text()) != -1){
-          $(this).trigger('click');
-        }
-      });
+      if(!!projectMembers){
+        projectMembers.forEach(function(member){
+          projectMembersIds.push(member.id);
+        });
+        $('.js-select-members-trigger').each(function() {
+          let $id = $('.id', this);
+          if(projectMembersIds.indexOf($id.text()) != -1){
+            $(this).trigger('click');
+          }
+        });
+      }
+
 
       function selectMember() {
         let $member = $('.id', this);
