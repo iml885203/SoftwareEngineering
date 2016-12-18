@@ -42,6 +42,9 @@ module.exports = {
     info: {
       required: '專案描述 必須輸入',
     },
+    manager: {
+      required: '缺少專案管理員ＱＱ',
+    },
   },
 
   getById: function(id, callback){

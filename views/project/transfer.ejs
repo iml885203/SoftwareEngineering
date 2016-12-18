@@ -1,0 +1,32 @@
+<% include partials/navbar %>
+<%
+  var form = {
+    action: `/project/${project.id}/transfer`,
+    method: 'POST',
+  }
+%>
+<% include ../partials/FormOpen %>
+<div class="form-group">
+  <div class="col-md-12 col-md-offset-2 alert alert-warning text-center">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    如你將 專案管理員 轉讓給某位成員，你將會退出參與此專案
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-4 control-label">專案管理員轉讓給</label>
+  <div class="col-md-8">
+    <select name="manager" class="selectpicker">
+      <option value="">請選擇</option>
+      <% project.members.forEach(function(member){ %>
+        <option value="<%=member.id%>"><%=member.name%></option>
+      <% }) %>
+    </select>
+  </div>
+</div>
+
+<%
+  var form = {
+    submit: '送出',
+  }
+%>
+<% include ../partials/FormClose %>
