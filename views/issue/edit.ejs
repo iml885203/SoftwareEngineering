@@ -8,7 +8,8 @@
         name:{
           title: '標題',
           type: 'text',
-          value: issue.name
+          value: issue.name,
+          placeholder: '問題名稱',
         },
       }
     }
@@ -18,7 +19,7 @@
   <div class="form-group">
     <label class="col-md-4 control-label">描述</label>
     <div class="col-md-8">
-      <textarea name="info" cols="30" rows="10" class="form-control"><%=issue.info%></textarea>
+      <textarea name="info" cols="30" rows="10" class="form-control" placeholder='問題描述'><%=issue.info%></textarea>
     </div>
   </div>
 
@@ -79,7 +80,7 @@
   <div class="form-group">
     <label class="col-md-4 control-label">花費時數(小時)</label>
     <div class="col-md-2">
-      <input type="text" name="workTime" class="form-control">
+      <input type="text" name="workTime" class="form-control" placeholder='小時數'>
     </div>
   </div>
 

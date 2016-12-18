@@ -12,7 +12,8 @@
       },
       name: {
         title: '名稱',
-        value: project.name
+        value: project.name,
+        placeholder: '專案名稱',
       },
     },
   }
@@ -24,7 +25,7 @@
     <div class="js-select-members" data-endpoint="/api/user/getMemberList/?projectId=<%=project.id%>">
       <div id="hacker-list">
         <ul class="selected-list"></ul>
-        <input class="search form-control" />
+        <input class="search form-control" placeholder='搜尋' />
         <ul class="list"></ul>
       </div>
     </div>
@@ -34,7 +35,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label">專案描述</label>
   <div class="col-md-8">
-    <textarea name="info" cols="30" rows="10" class="form-control"><%=project.info%></textarea>
+    <textarea name="info" cols="30" rows="10" class="form-control" placeholder='輸入描述'><%=project.info%></textarea>
   </div>
 </div>
 

@@ -35,6 +35,8 @@ var form = {
               class="form-control"
               value="<%=(!!form.input[name].value) ?
                     form.input[name].value : ''%>"
+              placeholder="<%=(!!form.input[name].placeholder) ?
+                    form.input[name].placeholder : ''%>"
               <%=(!!form.input[name].disabled) ?
                     form.input[name].disabled : ''%>
             >
