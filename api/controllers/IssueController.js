@@ -76,7 +76,6 @@ module.exports = {
 			Issue.findOneById(newIssue.id)
   		.populate('belongProject')
   		.then( (issue) => {
-        sails.log(issue);
           User.findOne({id:issue.belongProject.manager})
           .then( (manager) => {
 							var mailcontent = MailService.createMailContent.newIssue(issue,manager);
@@ -118,7 +117,6 @@ module.exports = {
 	},
 
 	update: function(req, res){
-		sails.log('update issue');
 		Issue.findOneById(req.params.issueId)
 		.populate('belongProject')
 		.populate('assignUser')

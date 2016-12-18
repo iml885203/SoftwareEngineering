@@ -62,12 +62,11 @@ module.exports = {
 			}
 			return res.view('project/edit', {
 				permissions: Attr.permission,
-				pageTitle: '編輯專案',
+				pageTitle: project.name,
 				project: project,
+				active: 'projectEdit',
 			});
 		});
-
-
 	},
 	//
 	update: function(req, res){
@@ -96,5 +95,48 @@ module.exports = {
 				active: 'info',
 			});
 		});
-	}
+	},
+
+	transfer: function(req, res){
+		Project.getById(req.params.id, function(err, project){
+			if(err){
+				handleErr.handleValidateError(req, err);
+				return res.redirect(`/project/${req.params.id}`);
+			}
+			if(project.manager.id != req.user.id){
+				return res.redirect(`/project/${req.params.id}`);
+			}
+			return res.view('project/transfer', {
+				pageTitle: project.name,
+				project: project,
+				active: 'projectTransfer',
+			});
+		});
+	},
+
+	transferPM: function(req, res){
+		Project.findOneById(req.params.id)
+		.populate('members')
+		.then((project) => {
+			req.body.members = [];
+			project.members.forEach(function(member){
+				if(member.id != req.body.manager){
+					req.body.members.push(member.id);
+				}
+			});
+			Project.update({
+				id: req.params.id,
+			}, req.body)
+			.then( (newProject) => {
+				req.addFlash('success', `${newProject[0].name} 專案管理員已更改`);
+				return res.redirect(`/project/${req.params.id}`);
+			})
+			.catch( (err) => {
+	      handleErr.handleValidateError(req, err);
+				return res.redirect(`/project/${req.params.id}/transfer`);
+			});
+		});
+
+	},
+
 };
