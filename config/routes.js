@@ -75,11 +75,6 @@ module.exports.routes = {
 
   //Project
   'GET /admin/project': 'admin/Project.index',
-  // 'GET /admin/project/:id': 'admin/Project.show',
-  'GET /admin/project/create': 'admin/Project.create',
-  'POST /admin/project/create': 'admin/Project.store',
-  // 'GET /admin/project/edit/:id': 'admin/Project.edit',
-  // 'UPDATE /admin/project/edit/:id': 'admin/Project.update',
   'DELETE /admin/project/delete/:id': 'admin/Project.delete',
 
   // ----------

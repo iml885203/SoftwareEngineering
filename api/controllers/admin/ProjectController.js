@@ -32,13 +32,6 @@ module.exports = {
 	},
 
 	//
-	create: function(req, res){
-		res.view('admin/project/create', {
-			permissions: Attr.permission,
-		});
-	},
-
-	//
 	store: function(req, res){
 		Project.create(req.body)
 		.then( () => {
@@ -51,18 +44,18 @@ module.exports = {
 	},
 
 	//
-	edit: function(req, res){
-		res.redirect('/admin');
-	},
-
-	//
-	update: function(req, res){
-		res.redirect('/admin');
-	},
-
-	//
 	delete: function(req, res){
-		res.redirect('/admin');
+		Project.destroy({
+			id: req.params.id
+		})
+		.then( (project) => {
+			req.addFlash('success', `${project[0].name} 已被刪除`);
+			res.redirect('/admin/project');
+		})
+		.catch( (err) => {
+      handleErr.handleValidateError(req, err);
+			res.redirect('/admin/project/create');
+		});
 	},
 
 };

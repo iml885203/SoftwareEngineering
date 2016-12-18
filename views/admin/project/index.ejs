@@ -19,8 +19,6 @@
               <td><%=project.manager.name%></td>
               <td><%=project.createdAt.toLocaleString()%></td>
               <td>
-                <a href="/admin/project/edit/<%=project.id%>" class="glyphicon glyphicon-search"></a>
-                <a href="/admin/project/edit/<%=project.id%>" class="glyphicon glyphicon-edit"></a>
                 <form action="/admin/project/delete/<%=project.id%>" class="inline-block">
                   <button type="submit" class="btn-link">
                     <i class="glyphicon glyphicon-remove"></i>
