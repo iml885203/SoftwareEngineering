@@ -14,24 +14,6 @@ module.exports = {
 	},
 
 	//
-	show: function(req, res){
-		// Project.findOne({
-		// 	id: req.params.id,
-		// })
-		// .then( (project) => {
-		// 	res.view('admin/project/show', {
-    //     permissions: Attr.permission,
-		// 		project : project,
-		// 	});
-		// })
-		// .catch( (err) => {
-		// 	handleErr.handleValidateError(req, err);
-		// 	res.redirect('/admin/project');
-		// });
-		res.redirect('/admin');
-	},
-
-	//
 	store: function(req, res){
 		Project.create(req.body)
 		.then( () => {

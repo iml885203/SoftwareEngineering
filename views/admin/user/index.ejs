@@ -10,6 +10,7 @@
         <th>帳號</th>
         <th>暱稱</th>
         <th>權限</th>
+        <th>E-mail</th>
         <th>創建日期</th>
         <th>驗證</th>
         <th>功能</th>
@@ -21,6 +22,7 @@
               <td><%=user.account%></td>
               <td><%=user.name%></td>
               <td><%=user.permission%></td>
+              <td><%-user.email%></td>
               <td><%=user.createdAt.toLocaleString()%></td>
               <td>
                 <% if(user.permission === 'user') { %>
