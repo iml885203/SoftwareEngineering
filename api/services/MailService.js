@@ -45,7 +45,7 @@ module.exports = {
         //主旨
         subject: 'ITS 帳號驗證信', // Subject line
         //嵌入 html 的內文
-        html: '<h2>請點選以下網址進行帳號驗證</h2> <p><a href="' + MailService.verifyhref(UserContent.account) +'">請點我</a> </p>',
+        html: `<h2>請點選以下網址進行帳號驗證</h2> <p><a href="http://youare87.ddns.net/home/verify/${UserContent.account}/${UserContent.id}">請點我</a> </p>`,
       };
       return options;
     },
@@ -104,16 +104,16 @@ module.exports = {
     },
   },
 
-  verifyhref: function(account){
-    var href = 'http://youare87.ddns.net/home/verify/' + account + '/';
-    var verifycode = bcrypt.hashSync(account, bcrypt.genSaltSync(10));
-    return href + verifycode;
-  },
-
   checkverify: function(Content){
-    if(bcrypt.compareSync(Content.account, Content.verifycode))
-      return true;
-    return false;
+    User.findOneById(Content.id)
+		.then((user)=>{
+			if(user.account === Content.account)
+        return true;
+      return false;
+		})
+		.catch( (err) => {
+			return false;
+		});
   },
 
 };

@@ -18,8 +18,8 @@ module.exports = {
 		req.body.permission = (!!req.body.permission) ? req.body.permission : 'user';
 		req.body.isVerified = (!!req.body.isVerified) ? req.body.isVerified : 'false';
 		User.create(req.body)
-		.then( () => {
-			var mailcontent = MailService.createMailContent.verify(req.body);
+		.then( (user) => {
+			var mailcontent = MailService.createMailContent.verify(user);
 			MailService.sendEmail(mailcontent);
 			res.redirect('/auth/login');
 		})
@@ -30,11 +30,9 @@ module.exports = {
 	},
 
 	verify: function(req, res){
-		if(MailService.checkverify(req.params)){
-			User.findOne({
-				account:req.params.account
-			})
-			.then( (user) => {
+		User.findOneById(req.params.id)
+		.then( (user) => {
+			if(user.account === req.params.account){
 				if(!user.isVerified){
 					user.isVerified = true;
 					user.save();
@@ -43,14 +41,14 @@ module.exports = {
 				else {
 					res.redirect('/home');
 				}
-			})
-			.catch( (err) => {
-				handleErr.handleValidateError(req, err);
-				res.redirect('/home');
-			});
-		}
-		else {
-			res.view('home/verifyFalid');
-		}
+			}
+			else {
+				res.view('home/verifyFalid');
+			}
+		})
+		.catch( (err) => {
+			handleErr.handleValidateError(req, err);
+			res.redirect('/home');
+		});		
 	},
 };
