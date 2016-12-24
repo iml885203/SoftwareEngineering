@@ -119,7 +119,6 @@ module.exports = {
 	update: function(req, res){
 		Issue.findOneById(req.params.issueId)
 		.populate('belongProject')
-		.populate('assignUser')
 		.then((issue) => {
 			Object.keys(req.body).forEach((key)=>{
 				if(req.body[key] != issue[key]){
