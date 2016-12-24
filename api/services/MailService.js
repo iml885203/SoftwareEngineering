@@ -7,6 +7,7 @@
 
  var nodemailer = require('nodemailer');
  var bcrypt = require('bcrypt-nodejs');
+ var siteURL = '';
 
  var transporter = nodemailer.createTransport({
    service: 'Gmail',
@@ -45,7 +46,7 @@ module.exports = {
         //主旨
         subject: 'ITS 帳號驗證信', // Subject line
         //嵌入 html 的內文
-        html: `<h2>請點選以下網址進行帳號驗證</h2> <p><a href="http://youare87.ddns.net/home/verify/${UserContent.account}/${UserContent.id}">請點我</a> </p>`,
+        html: `<h2>請點選以下網址進行帳號驗證</h2> <p><a href="${MailService.siteURL}/home/verify/${UserContent.account}/${UserContent.id}">請點我</a> </p>`,
       };
       return options;
     },
@@ -62,7 +63,7 @@ module.exports = {
         //嵌入 html 的內文
         html: `<h2>你所管理的Project 「${issue.belongProject.name}」 已新增了一筆Issue</h2>`
               + `<h3>請點選以下網址查看</h3>`
-              + `<p><a href="http://youare87.ddns.net/project/${issue.belongProject.id}/issue/${issue.id}">請點我</a> </p>`,
+              + `<p><a href="${MailService.siteURL}/${issue.belongProject.id}/issue/${issue.id}">請點我</a> </p>`,
       };
       return options;
     },
@@ -80,7 +81,7 @@ module.exports = {
         html: `<h2>你所管理的Project 「${issue.belongProject.name}」 </h2>`
               + `<h2>Issue 「${issue.name}」 已解決</h2>`
               + `<h3>請點選以下網址查看</h3>`
-              + `<p><a href="http://youare87.ddns.net/project/${issue.belongProject.id}/issue/${issue.id}">請點我</a> </p>`,
+              + `<p><a href="${MailService.siteURL}/${issue.belongProject.id}/issue/${issue.id}">請點我</a> </p>`,
       };
       return options;
     },
@@ -98,7 +99,7 @@ module.exports = {
         html: `<h2>你被 ${you.name} 指派了一個Issue「${issue.name}」 </h2>`
               + `<h2>在你所參與的Project 「${issue.belongProject.name}」 </h2>`
               + `<h3>請點選以下網址查看</h3>`
-              + `<p><a href="http://youare87.ddns.net/project/${issue.belongProject.id}/issue/${issue.id}">請點我</a> </p>`,
+              + `<p><a href="${MailService.siteURL}/${issue.belongProject.id}/issue/${issue.id}">請點我</a> </p>`,
       };
       return options;
     },

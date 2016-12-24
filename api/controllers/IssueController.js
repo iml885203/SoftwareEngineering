@@ -78,8 +78,13 @@ module.exports = {
   		.then( (issue) => {
           User.findOne({id:issue.belongProject.manager})
           .then( (manager) => {
-							var mailcontent = MailService.createMailContent.newIssue(issue,manager);
-							MailService.sendEmail(mailcontent);
+						MailService.siteURL = `${req.protocol}://${req.get('host')}`;
+						if(!manager.email){
+							req.addFlash('danger', `${manager.name} 沒有信箱，無法寄信通知`);
+							return;
+						}
+						var mailcontent = MailService.createMailContent.newIssue(issue,manager);
+						MailService.sendEmail(mailcontent);
       		});
   		});
 			//***新增Issue時，發信給PM***
@@ -168,6 +173,11 @@ module.exports = {
 						.then( (you) => {
 							User.findOne({id:issue.assignUser})
 							.then( (assignUser) => {
+								MailService.siteURL = `${req.protocol}://${req.get('host')}`;
+								if(!assignUser.email){
+									req.addFlash('danger', `${assignUser.name} 沒有信箱，無法寄信通知`);
+									return;
+								}
 								var mailcontent = MailService.createMailContent.assignToYou(issue,you,assignUser);
 								MailService.sendEmail(mailcontent);
 							});
@@ -178,8 +188,13 @@ module.exports = {
 					if(key === 'state' && req.body[key] === 'solved'){
 						User.findOne({id:issue.belongProject.manager})
 						.then( (manager) => {
-								var mailcontent = MailService.createMailContent.solveIssue(issue,manager);
-								MailService.sendEmail(mailcontent);
+							MailService.siteURL = `${req.protocol}://${req.get('host')}`;
+							if(!manager.email){
+								req.addFlash('danger', `${manager.name} 沒有信箱，無法寄信通知`);
+								return;
+							}
+							var mailcontent = MailService.createMailContent.solveIssue(issue,manager);
+							MailService.sendEmail(mailcontent);
 						});
 					}
 				  //***Issue close時，發信給PM***

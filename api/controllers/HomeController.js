@@ -19,8 +19,13 @@ module.exports = {
 		req.body.isVerified = (!!req.body.isVerified) ? req.body.isVerified : 'false';
 		User.create(req.body)
 		.then( (user) => {
-			var mailcontent = MailService.createMailContent.verify(user);
-			MailService.sendEmail(mailcontent);
+			MailService.siteURL = `${req.protocol}://${req.get('host')}`;
+			if(!user.email){
+				req.addFlash('danger', `${user.name} 沒有信箱，無法寄信通知`);
+			}else{
+				var mailcontent = MailService.createMailContent.verify(user);
+				MailService.sendEmail(mailcontent);
+			}
 			res.redirect('/auth/login');
 		})
 		.catch( (err) => {
@@ -36,7 +41,9 @@ module.exports = {
 				if(!user.isVerified){
 					user.isVerified = true;
 					user.save();
-					res.view('home/verifySuccessful');
+					res.view('home/verifySuccessful', {
+						user: user,
+					});
 				}
 				else {
 					res.redirect('/home');
