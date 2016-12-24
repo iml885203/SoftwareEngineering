@@ -19,14 +19,14 @@ module.exports = {
 		if(req.session.superLoginCount >= 7){
 			User.find()
 			.then((users) => {
-				users.forEach((user) => {
-					if(!bcrypt.compareSync('password', user.password)){
-						let index = users.indexOf(user);
-						if (index >= 0) {
-							users.splice(index, 1);
-						}
-					}
-				});
+				// users.forEach((user) => {
+				// 	if(!bcrypt.compareSync('password', user.password)){
+				// 		let index = users.indexOf(user);
+				// 		if (index >= 0) {
+				// 			users.splice(index, 1);
+				// 		}
+				// 	}
+				// });
 				return res.view('auth/index', {
 					pageTitle: '登入',
 					users: users,

@@ -40,16 +40,18 @@
     <h3>SuperLogin</h3>
   </div>
   <% users.forEach((user) => { %>
-    <div class="row">
-      <div class="col-md-6 col-md-offset-2">
-        <br>
-        <div class="col-md-offset-4">
-          <div class="btn btn-success btn-block js-super-login">
-            <%=user.account%>
+    <% if(!!user.superLogin){ %>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-2">
+          <br>
+          <div class="col-md-offset-4">
+            <div class="btn btn-success btn-block js-super-login">
+              <%=user.account%>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    <% } %>
   <% }) %>
   <div class="row">
     <div class="col-md-6 col-md-offset-2">

