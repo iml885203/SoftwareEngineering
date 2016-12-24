@@ -13,6 +13,9 @@ bcrypt = require('bcrypt-nodejs');
 module.exports = {
   //login page
 	index: function(req, res){
+		if(!!req.query.cancelSuperLogin){
+			req.session.superLoginCount = 0;
+		}
 		if(req.session.superLoginCount >= 7){
 			User.find()
 			.then((users) => {

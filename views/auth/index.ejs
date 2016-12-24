@@ -35,6 +35,10 @@
   </div>
 </div>
 <% if(typeof users != 'undefined'){ %>
+  <hr>
+  <div class="text-center">
+    <h3>SuperLogin</h3>
+  </div>
   <% users.forEach((user) => { %>
     <div class="row">
       <div class="col-md-6 col-md-offset-2">
@@ -47,4 +51,16 @@
       </div>
     </div>
   <% }) %>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-2">
+      <br>
+      <div class="col-md-offset-4">
+        <a href="/auth/login?cancelSuperLogin=true">
+          <div class="btn btn-danger btn-block js-super-login">
+            取消SuperLogin
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 <% } %>
