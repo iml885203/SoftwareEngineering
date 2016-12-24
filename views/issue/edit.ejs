@@ -66,10 +66,11 @@
     <div class="col-md-8">
       <select name="assignUser" class="selectpicker">
         <option value="">請選擇</option>
+        <option value="<%=project.manager.id%>" <%=(!!issue.assignUser && project.manager.id === issue.assignUser.id) ? 'selected' : ''%> >
+          <%=project.manager.name%>
+        </option>
         <% project.members.forEach(function(member){ %>
-          <option value="<%=member.id%>"
-            <%=(!!issue.assignUser && member.id === issue.assignUser.id) ? 'selected' : ''%>
-          >
+          <option value="<%=member.id%>" <%=(!!issue.assignUser && member.id === issue.assignUser.id) ? 'selected' : ''%> >
             <%=member.name%>
           </option>
         <% }) %>
