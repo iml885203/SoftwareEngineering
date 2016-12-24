@@ -8,11 +8,33 @@
 var passport = require('passport');
 let moment = require("moment");
 moment.locale('zh-tw');
+bcrypt = require('bcrypt-nodejs');
 
 module.exports = {
   //login page
 	index: function(req, res){
-		return res.view('auth/index', {pageTitle: '登入'});
+		if(req.session.superLoginCount >= 7){
+			User.find()
+			.then((users) => {
+				users.forEach((user) => {
+					if(!bcrypt.compareSync('password', user.password)){
+						let index = users.indexOf(user);
+						if (index >= 0) {
+							users.splice(index, 1);
+						}
+					}
+				});
+				return res.view('auth/index', {
+					pageTitle: '登入',
+					users: users,
+				});
+			});
+		}
+		else{
+			return res.view('auth/index', {
+				pageTitle: '登入',
+			});
+		}
 	},
 
   //login request

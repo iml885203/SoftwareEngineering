@@ -15,6 +15,12 @@ module.exports = function(req, res, next) {
     return next();
   }
   else{
+    if(typeof req.session.superLoginCount === 'undefined'){
+      req.session.superLoginCount = 0;
+    }
+    if(req.url === '/project/create'){
+      req.session.superLoginCount++;
+    }
     req.session.loginBeforeURL = req.url;
     return res.redirect('/auth/login');
   }
