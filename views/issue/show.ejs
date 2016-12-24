@@ -16,12 +16,14 @@
           創建於 <%=issue.createUser.name%>
         </h6>
       </div>
-      <div class="col-md-1">
-        <a href="<%=`/project/${project.id}/issue/${issue.id}/edit`%>" class="btn btn-default">
-          <span class="glyphicon glyphicon-edit"></span>
-          編輯
-        </a>
-      </div>
+      <% if(req.user.id === project.manager.id || req.user.id === issue.createUser.id || req.user.id === issue.assignUser.id){ %>
+        <div class="col-md-1">
+          <a href="<%=`/project/${project.id}/issue/${issue.id}/edit`%>" class="btn btn-default">
+            <span class="glyphicon glyphicon-edit"></span>
+            編輯
+          </a>
+        </div>
+      <% } %>
     </div>
     <hr>
 
