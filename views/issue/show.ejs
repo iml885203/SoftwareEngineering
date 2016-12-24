@@ -30,9 +30,7 @@
     <!-- info -->
     <div class="row">
       <div class="col-md-offset-1">
-        <!-- <%-issue.info.replace(/\r\n/g, '<br/>')%>         -->
-        <%var issuehtml = md(issue.info.replace(/\r\n/g, '<br/>'));%>
-        <%-issuehtml%>
+        <%-md(issue.info)%>
       </div>
     </div>
     <hr>
@@ -70,9 +68,7 @@
                 <h5 class="inline"><%=log.createUser.name%></h5>
                 <h6 class="inline">@ <%=moment(log.createdAt).fromNow()%> 留言</h6>
                 <div>
-                  <%var loghtml = md(log.content,true);%>
-                  <%-loghtml%>
-                  <!-- <%-log.content.replace(/\r\n/g, '<br/>')%> -->
+                  <%-md(log.content)%>
                 </div>
               </div>
             </div>
@@ -113,7 +109,7 @@
             </div>
             <div class="col-md-11">
               <div class="form-group">
-                <textarea name="content" cols="30" rows="5" class="form-control" placeholder='輸入留言'></textarea>
+                <textarea data-provide="markdown" data-language="zh" name="content" cols="30" rows="5" class="form-control" placeholder='輸入留言'></textarea>
               </div>
               <div class="form-group">
                 <input type="submit" class="btn btn-success" value="留言">

@@ -6,7 +6,7 @@
  */
 let moment = require("moment");
 moment.locale('zh-tw');
-var md = require("node-markdown").Markdown;
+let md = require("node-markdown").Markdown;
 
 module.exports = {
 

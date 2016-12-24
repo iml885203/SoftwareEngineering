@@ -5,6 +5,8 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+ let md = require("node-markdown").Markdown;
+
 module.exports = {
 	//
 	index: function(req, res){
@@ -93,6 +95,7 @@ module.exports = {
 				project: project,
 				pageTitle: project.name,
 				active: 'info',
+				md: md,
 			});
 		});
 	},
