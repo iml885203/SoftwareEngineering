@@ -83,6 +83,7 @@ module.exports.routes = {
   // api-----
   // ----------
   'GET /api/user/getMemberList': 'api/User.getMemberList',
+  'GET /api/project/:id': 'api/Issue.getC3Data',
 
 
   // ------------
