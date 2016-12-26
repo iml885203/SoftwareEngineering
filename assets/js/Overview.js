@@ -1,44 +1,17 @@
-var OverviewState = c3.generate({
-      bindto:"#OverviewState",
-      data: {
-          // iris data from R
-          columns: [
-            ["A", 100],
-            ["B", 100],
-          ],
-          type : 'pie',
-          onclick: function (d, i) { console.log("onclick", d, i); },
-          onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-          onmouseout: function (d, i) { console.log("onmouseout", d, i); }
-      }
-  });
+$(function(){
+  $('.c3').each(function() {
+    let projectId = $(this).data('projectid');
+    let target = $(this).data('target');
+    let thisId = $(this).attr('id');
+    $.get(`/api/project/${projectId}/?target=${target}`, function(data){
 
-  var OverviewPriority = c3.generate({
-        bindto:"#OverviewPriority",
+      OverviewTag = c3.generate({
+        bindto: `#${thisId}`,
         data: {
-            // iris data from R
-            columns: [
-              ["C", 100],
-              ["D", 100],
-            ],
-            type : 'pie',
-            onclick: function (d, i) { console.log("onclick", d, i); },
-            onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-            onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+          columns: data,
+          type : 'pie',
         }
-    });
-
-    var OverviewTag = c3.generate({
-          bindto:"#OverviewTag",
-          data: {
-              // iris data from R
-              columns: [
-                ["E", 100],
-                ["F", 100],
-              ],
-              type : 'pie',
-              onclick: function (d, i) { console.log("onclick", d, i); },
-              onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-              onmouseout: function (d, i) { console.log("onmouseout", d, i); }
-          }
       });
+    });
+  });
+});
