@@ -103,6 +103,24 @@ module.exports = {
       };
       return options;
     },
+
+    //申請加入專案
+    applyToProject: function(user,project){
+      var options = {
+        //寄件者
+        from: 'ntutcsieits@gmail.com',
+        //收件者
+        to: project.manager.email,
+        //主旨
+        subject: `申請加入專案`, // Subject line
+        //嵌入 html 的內文
+        html: `工程師 ${user.name} 向您申請加入專案 「${project.name}」 </h2>`
+              + `<h3>請點選以下網址查看</h3>`
+              + `<p><a href="${MailService.siteURL}/project/admit/${user.id}/${project.id}">請點我</a> </p>`,
+
+      };
+      return options;
+    },
   },
 
   checkverify: function(Content){

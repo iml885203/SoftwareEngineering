@@ -31,7 +31,7 @@ module.exports.policies = {
     '*': true,
     'signup': 'isNotLogined',//登入後無法到此頁面
     'store': 'isNotLogined',//登入後無法到此頁面
-    'verify': 'isNotLogined',//登入後無法到此頁面  
+    'verify': 'isNotLogined',//登入後無法到此頁面
   },
 
   'auth': {
@@ -44,6 +44,7 @@ module.exports.policies = {
   'project': {
     'create': 'isLogined',//設為需登入才能存取
     'myProject': 'isLogined',
+    'admit': 'isLogined',
   },
 
   'issue': {

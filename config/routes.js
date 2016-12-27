@@ -51,6 +51,8 @@ module.exports.routes = {
   'GET /project/:id/edit': 'Project.edit',
   'POST /project/:id/update': 'Project.update',
   'GET /project/:id': 'Project.show',
+  'GET /project/apply/:id': 'Project.apply',
+  'GET /project/admit/:userId/:projectId': 'Project.admit',
   'GET /project/:id/transfer': 'Project.transfer',
   'POST /project/:id/transfer': 'Project.transferPM',
   //Issue
