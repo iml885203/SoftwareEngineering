@@ -2,7 +2,7 @@
   <% include partials/navbar %>
   <div class="col-md-8 col-md-offset-2">
     <!-- 關於專案 -->
-    <div class="col-md-12">
+    <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-heading">
           專案描述
@@ -29,13 +29,32 @@
       </div>
     </div>
     <!-- issue追蹤 -->
-    <div class="col-md-6">
+    <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">
           問題追蹤
         </div>
         <div class="panel-body">
-
+          <div class="row">
+            <div class="col-md-4">
+              <div class="text-center"><h4>狀態</h4>
+              </div>
+              <div id="OverviewState" class="c3" data-projectid="<%=project.id%>" data-target="state">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="text-center"><h4>重要性</h4>
+              </div>
+              <div id="OverviewPriority" class="c3" data-projectid="<%=project.id%>" data-target="priority">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="text-center"><h4>標籤</h4>
+              </div>
+              <div id="OverviewTag" class="c3" data-projectid="<%=project.id%>" data-target="tag">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
