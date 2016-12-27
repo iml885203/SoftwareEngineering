@@ -11,7 +11,9 @@
       <br>
     </div>
     <button type="button" class="btn btn-info filter-issue">顯示全部</button>
-    <button type="button" class="btn btn-info filter-issue" data-attr="assignUser" data-val="<%=req.user.name%>">我被指派的</button>
+    <%if(!!req.user){%>
+      <button type="button" class="btn btn-info filter-issue" data-attr="assignUser" data-val="<%=req.user.name%>">我被指派的</button>
+    <%}%>
     <button type="button" class="btn btn-info filter-issue" data-attr="state" data-val="new">新的</button>
 
 
