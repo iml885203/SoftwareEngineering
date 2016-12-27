@@ -1,10 +1,19 @@
 <div class="row">
   <% include ../project/partials/navbar %>
   <div class="col-md-8 col-md-offset-2 js-issues-list" id="issues-list" style="display:none;">
+    <button type="button" class="btn btn-default sort" data-sort="createdAt" data-val="new">
+      顯示最新
+      <span class="glyphicon glyphicon-triangle-top"></span>
+    </button>
+
     <div class="col-md-4">
       <input type="text" class="form-control search" placeholder="搜尋">
       <br>
     </div>
+    <button type="button" class="btn btn-info filter-issue">顯示全部</button>
+    <button type="button" class="btn btn-info filter-issue" data-attr="assignUser" data-val="<%=req.user.name%>">我被指派的</button>
+    <button type="button" class="btn btn-info filter-issue" data-attr="state" data-val="new">新的</button>
+
 
     <table class="table">
       <thead>
@@ -17,21 +26,22 @@
       <tbody class="list">
         <% issues.forEach(function(issue){ %>
           <tr class="js-href" data-href="/project/<%=project.id%>/issue/<%=issue.id%>">
-            <td class="name">
-              <%=issue.name%>
+            <td>
+              <span class="name"><%=issue.name%></span>
+              <span class="createdAt"><%=moment(issue.createdAt).format('x')%></span>
               <h6>
                 # <%= moment(issue.createdAt).fromNow()%>
                 創建於 <%=issue.createUser.name%>
               </h6>
             </td>
-            <td class="state">
-              <span class="label label-<%=labelType[issue.state]%>"><%=issue.state%></span>
+            <td>
+              <span class="label label-<%=labelType[issue.state]%> state"><%=issue.state%></span>
             </td>
-            <td class="priority">
-              <span class="label label-<%=labelType[issue.priority]%>"><%=issue.priority%></span>
+            <td>
+              <span class="label label-<%=labelType[issue.priority]%> priority"><%=issue.priority%></span>
             </td>
-            <td class="tag">
-              <span class="label label-<%=labelType[issue.tag]%>"><%=issue.tag%></span>
+            <td>
+              <span class="label label-<%=labelType[issue.tag]%> tag"><%=issue.tag%></span>
             </td>
             <td class="assignUser">
               <% if(typeof issue.assignUser != 'undefined'){ %>

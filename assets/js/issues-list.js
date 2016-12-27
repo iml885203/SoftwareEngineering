@@ -3,6 +3,7 @@ $(function(){
     var issuesList = new List('issues-list', {
       valueNames: [
         'name',
+        'createdAt',
         'state',
         'priority',
         'tag',
@@ -37,5 +38,24 @@ $(function(){
         $(this).empty().text(text);
       });
     }
+
+    $('.filter-issue', this).on('click', function(){
+      issuesList.filter();
+      let filterAttr = $(this).data('attr');
+      let filterVal = $(this).data('val');
+
+      if(typeof filterAttr != 'undefined' && typeof filterVal != 'undefined'){
+        issuesList.filter(function(issue){
+          // console.log();
+          if(issue.values()[filterAttr].trim() === filterVal){
+            return true;
+          }
+          else{
+            return false;
+          }
+        });
+      }
+
+    });
   });
 });
