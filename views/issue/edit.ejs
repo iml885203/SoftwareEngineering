@@ -38,9 +38,9 @@
   </div>
 
   <div class="form-group">
-    <label class="col-md-4 control-label">重要性</label>
+    <label class="col-md-4 control-label">重要性<%=issue.createUser != req.user.id%></label>
     <div class="col-md-8">
-      <select name="priority" class="selectpicker" disabled="<%=(issue.assignUser.id === req.user.id) ? 'disabled' : ''%>">
+      <select name="priority" class="selectpicker" <%=((issue.createUser === req.user.id) || (project.manager.id === req.user.id)) ? '' : 'disabled'%>>
         <option value="">請選擇</option>
         <% priorities.forEach((priority) => { %>
           <option value="<%=priority%>" <%=(priority === issue.priority) ? 'selected' : ''%>><%=priority%></option>
@@ -52,7 +52,7 @@
   <div class="form-group">
     <label class="col-md-4 control-label">標籤</label>
     <div class="col-md-8">
-      <select name="tag" class="selectpicker" disabled="<%=(issue.assignUser.id === req.user.id) ? 'disabled' : ''%>">
+      <select name="tag" class="selectpicker" <%=((issue.createUser === req.user.id) || (project.manager.id === req.user.id)) ? '' : 'disabled'%>>
         <option value="">請選擇</option>
         <% tags.forEach((tag) => { %>
           <option value="<%=tag%>" <%=(tag === issue.tag) ? 'selected' : ''%>><%=tag%></option>

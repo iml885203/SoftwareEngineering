@@ -11,7 +11,9 @@
       <br>
     </div>
     <button type="button" class="btn btn-info filter-issue">顯示全部</button>
-    <button type="button" class="btn btn-info filter-issue" data-attr="assignUser" data-val="<%=req.user.name%>">我被指派的</button>
+    <%if(!!req.user){%>
+      <button type="button" class="btn btn-info filter-issue" data-attr="assignUser" data-val="<%=req.user.name%>">我被指派的</button>
+    <%}%>
     <button type="button" class="btn btn-info filter-issue" data-attr="state" data-val="new">新的</button>
 
 
@@ -28,7 +30,7 @@
           <tr class="js-href" data-href="/project/<%=project.id%>/issue/<%=issue.id%>">
             <td>
               <span class="name"><%=issue.name%></span>
-              <span class="createdAt"><%=moment(issue.createdAt).format('x')%></span>
+              <span class="createdAt hidden"><%=moment(issue.createdAt).format('x')%></span>
               <h6>
                 # <%= moment(issue.createdAt).fromNow()%>
                 創建於 <%=issue.createUser.name%>
