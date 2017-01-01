@@ -188,7 +188,7 @@ module.exports = {
     .populate('members')
     .populate('manager')
     .then( (project) => {
-      if(req.session.passport.user != project.manager){
+      if(req.session.passport.user != project.manager.id){
         req.addFlash('danger', '你不是專案管理員喔');
         return res.redirect(`/project/${req.params.projectId}`);
       }

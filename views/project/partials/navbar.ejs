@@ -18,6 +18,24 @@
         <a href="/project/<%=project.id%>/transfer">專案轉讓</a>
       </li>
     <% } %>
+    <% if(!!req.user){ %>
+      <% let isMember = false; %>
+
+      <% project.members.forEach((member)=>{ %>
+        <% if(member.id === req.user.id) isMember = true;%>
+        <% if(isMember) return; %>
+      <% }); %>
+
+      <% if(project.manager.id === req.user.id) isMember = true; %>
+
+      <% if(!isMember){ %>
+        <li>
+          <a href="/project/apply/<%=project.id%>">加入專案</a>
+        </li>
+      <% } %>
+    <% } %>
+
+
   </ul>
   <br>
 </div>
