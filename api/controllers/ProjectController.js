@@ -130,9 +130,20 @@ module.exports = {
 			Project.update({
 				id: req.params.id,
 			}, req.body)
+      .populate('manager')
 			.then( (newProject) => {
-				req.addFlash('success', `${newProject[0].name} 專案管理員已更改`);
-				return res.redirect(`/project/${req.params.id}`);
+        User.findOneById(req.session.passport.user)
+        .then( (you) => {
+          MailService.siteURL = `${req.protocol}://${req.get('host')}`;
+          if(!newProject[0].manager.email){
+            req.addFlash('danger', `${newProject[0].manager.name} 沒有信箱，無法寄信通知`);
+            return;
+          }
+          var mailcontent = MailService.createMailContent.trnasferPM(you,newProject[0]);
+          MailService.sendEmail(mailcontent);
+          req.addFlash('success', `${newProject[0].name} 專案管理員已更改`);
+  				return res.redirect(`/project/${req.params.id}`);
+        });
 			})
 			.catch( (err) => {
 	      handleErr.handleValidateError(req, err);
