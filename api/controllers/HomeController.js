@@ -11,7 +11,10 @@ module.exports = {
 	},
 
 	signup: function(req, res){
-		res.view('home/signup', { permissions: Attr.permission });
+		res.view('home/signup', {
+			permissions: Attr.permission,
+			pageTitle: '註冊',
+		});
 	},
 
 	store: function(req, res){
@@ -56,6 +59,6 @@ module.exports = {
 		.catch( (err) => {
 			handleErr.handleValidateError(req, err);
 			res.redirect('/home');
-		});		
+		});
 	},
 };
