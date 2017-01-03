@@ -122,12 +122,12 @@ module.exports = {
       return options;
     },
     //轉讓權限給新PM
-    trnasferPM: function(you, newProject){
+    trnasferPM: function(you, manager, newProject){
       var options = {
         //寄件者
         from: 'ntutcsieits@gmail.com',
         //收件者
-        to: newProject.manager.email,
+        to: manager.email,
         //主旨
         subject: `申請加入專案`, // Subject line
         //嵌入 html 的內文
